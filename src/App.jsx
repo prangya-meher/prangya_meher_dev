@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ThemeProvider } from './context/ThemeContext';
 
 // Components
 import Navbar from './components/Navbar';
 import BackgroundAnimation from './components/BackgroundAnimation';
 import IntroScreen from './components/IntroScreen';
+import InteractivePointer from './components/InteractivePointer';
 
 // Pages
 import Home from './pages/Home';
@@ -19,25 +21,19 @@ function App() {
   const [loading, setLoading] = useState(true);
   const location = useLocation();
 
-  useEffect(() => {
-    // Configure perfect timing for animation complete and disappear (3500ms)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 3500);
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <>
+    <ThemeProvider>
+      <InteractivePointer />
       <AnimatePresence mode="wait">
         {loading ? (
-          <IntroScreen key="intro" />
+          <IntroScreen key="intro" onComplete={() => setLoading(false)} />
         ) : (
           <motion.div
             key="main-app"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
+            style={{ width: '100%', minHeight: '100vh', position: 'relative' }}
           >
             <BackgroundAnimation />
             <Navbar />
@@ -55,7 +51,7 @@ function App() {
           </motion.div>
         )}
       </AnimatePresence>
-    </>
+    </ThemeProvider>
   );
 }
 

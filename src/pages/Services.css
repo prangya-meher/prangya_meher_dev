@@ -1,49 +1,198 @@
-.services-section {
+.editorial-services-page {
     min-height: 100vh;
-    padding: 120px 0 80px;
+    padding: 100px 0 80px 0;
 }
 
-.services-grid {
+.editorial-services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    margin-top: 4rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-bottom: 72px;
 }
 
-.service-card {
-    padding: 2.5rem 2rem;
-    text-align: center;
-    border-radius: 20px;
-    transition: all 0.3s ease;
-    cursor: default;
-}
-
-.service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    background: rgba(147, 51, 234, 0.1);
-    color: var(--accent-1);
-    border-radius: 50%;
+.editorial-service-card {
+    background: #DDD7CE;
+    border: 1px solid rgba(23, 23, 23, 0.12);
+    padding: 36px;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.3s ease;
+    flex-direction: column;
+    gap: 16px;
+    transition: transform 0.3s ease;
 }
 
-.service-card:hover .service-icon {
-    background: var(--accent-gradient);
-    color: white;
-    transform: rotateY(180deg);
+.editorial-service-card:hover {
+    transform: translateY(-4px);
+    background: #D7D0C6;
 }
 
-.service-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-color);
-}
-
-.service-desc {
+.service-index-number {
+    font-size: 2.2rem;
+    font-weight: 300;
+    line-height: 1;
     color: var(--text-muted);
+}
+
+.service-card-heading {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    color: var(--text-primary);
+}
+
+.service-card-narrative {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+.service-deliverables-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(23, 23, 23, 0.1);
+    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
+    margin: 4px 0;
+}
+
+.deliverables-tag {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    color: var(--text-muted);
+}
+
+.deliverables-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.deliverable-line {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.dash-mark {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+.service-tags-box {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+
+/* ==========================================================================
+   METHODOLOGY ROADMAP
+   ========================================================================== */
+.methodology-container {
+    margin-bottom: 72px;
+}
+
+.methodology-header {
+    margin-bottom: 32px;
+}
+
+.methodology-title {
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.methodology-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.methodology-card {
+    padding: 24px;
+    background: #E4DFD8;
+    border: 1px solid rgba(23, 23, 23, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.step-num {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--text-muted);
+}
+
+.step-name {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--text-primary);
+}
+
+.step-detail {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+/* Bottom CTA */
+.services-bottom-cta {
+    padding: 44px;
+    background: #DDD7CE;
+    border: 1px solid rgba(23, 23, 23, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    flex-wrap: wrap;
+}
+
+.cta-left {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cta-lead {
+    font-size: 2rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    letter-spacing: -0.01em;
+}
+
+.cta-desc {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
     line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .editorial-services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .methodology-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .methodology-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }

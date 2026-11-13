@@ -1,0 +1,55 @@
+.custom-pointer-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.pointer-spotlight {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(23, 23, 23, 0.03) 0%, transparent 70%);
+    opacity: 0.6;
+    pointer-events: none;
+    will-change: transform;
+    transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.pointer-dot {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    top: -3.5px;
+    left: -3.5px;
+    border-radius: 50%;
+    background-color: var(--text-primary);
+    pointer-events: none;
+    will-change: transform;
+    transition: width 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                height 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                top 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                left 0.2s cubic-bezier(0.16, 1, 0.3, 1), 
+                background-color 0.2s ease,
+                border 0.2s ease;
+}
+
+.pointer-dot.hovered {
+    width: 36px;
+    height: 36px;
+    top: -18px;
+    left: -18px;
+    background-color: transparent;
+    border: 1px solid var(--text-primary);
+}
+
+@media (pointer: coarse) {
+    .custom-pointer-container {
+        display: none !important;
+    }
+}

@@ -1,153 +1,143 @@
 import React, { useState } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Home, User, Briefcase, Mail, Sparkles, Menu, X } from 'lucide-react';
+import { Home, User, Briefcase, Mail, Sparkles, Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTheme } from '../context/ThemeContext';
 import './Navbar.css';
 
 const navLinks = [
-    { name: 'Home', path: '/', icon: <Home size={22} /> },
-    { name: 'About', path: '/about', icon: <User size={22} /> },
-    { name: 'Services', path: '/services', icon: <Sparkles size={22} /> },
-    { name: 'Projects', path: '/projects', icon: <Briefcase size={22} /> },
-    { name: 'Contact', path: '/contact', icon: <Mail size={22} /> },
+    { name: 'Home', path: '/', icon: <Home size={18} /> },
+    { name: 'About', path: '/about', icon: <User size={18} /> },
+    { name: 'Services', path: '/services', icon: <Sparkles size={18} /> },
+    { name: 'Projects', path: '/projects', icon: <Briefcase size={18} /> },
+    { name: 'Contact', path: '/contact', icon: <Mail size={18} /> },
 ];
 
 const Navbar = () => {
     const location = useLocation();
     const [mobileOpen, setMobileOpen] = useState(false);
+    const { playClickSound } = useTheme();
 
     const isActive = (path) =>
         path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
 
+    const handleNavClick = () => {
+        playClickSound();
+    };
+
     return (
         <>
-            {/* ── Desktop: vertical sidebar ─────────────────────────── */}
-            <nav className="side-navbar">
-                <div className="nav-capsule">
-                    <ul className="nav-items">
-                        {navLinks.map((link) => (
-                            <li key={link.path} className="nav-item">
-                                <NavLink to={link.path} className="nav-icon-link" end={link.path === '/'}>
-                                    <motion.div
-                                        className="icon-wrapper"
-                                        whileHover={{
-                                            scale: 1.25,
-                                            rotate: 8,
-                                            transition: { type: 'spring', stiffness: 400, damping: 15 }
-                                        }}
-                                        whileTap={{ scale: 0.9 }}
+            {/* Desktop Minimal Vertical Dock */}
+            <aside className="editorial-dock" aria-label="Main Navigation">
+                <nav className="editorial-dock-inner">
+                    <ul className="editorial-nav-list">
+                        {navLinks.map((link) => {
+                            const active = isActive(link.path);
+                            return (
+                                <li key={link.path} className="editorial-nav-item">
+                                    <NavLink
+                                        to={link.path}
+                                        end={link.path === '/'}
+                                        className={`editorial-nav-link ${active ? 'active' : ''}`}
+                                        onClick={handleNavClick}
                                     >
-                                        <AnimatePresence>
-                                            {isActive(link.path) && (
-                                                <motion.span
-                                                    key="active-bg"
-                                                    layoutId="active-pill"
-                                                    className="active-indicator"
-                                                    initial={{ opacity: 0, scale: 0.5 }}
-                                                    animate={{ opacity: 1, scale: 1 }}
-                                                    exit={{ opacity: 0, scale: 0.5 }}
-                                                    transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-                                                />
-                                            )}
-                                        </AnimatePresence>
-                                        <span className={`nav-icon ${isActive(link.path) ? 'icon-active' : ''}`}>
-                                            {link.icon}
-                                        </span>
-                                    </motion.div>
-                                    <span className="nav-tooltip">{link.name}</span>
-                                </NavLink>
-                            </li>
-                        ))}
+                                        <span className="dock-icon">{link.icon}</span>
+                                        <span className="editorial-tooltip font-sans">{link.name}</span>
+                                    </NavLink>
+                                </li>
+                            );
+                        })}
                     </ul>
-                </div>
-            </nav>
+                </nav>
+            </aside>
 
-            {/* ── Mobile: hamburger + slide-in drawer ───────────────── */}
-            <div className="mobile-navbar">
-                {/* Top bar */}
-                <div className="mobile-topbar">
-                    <span className="mobile-logo">
-                        <span className="text-gradient">Prangya</span>.dev
-                    </span>
-                    <motion.button
-                        className="hamburger-btn"
-                        onClick={() => setMobileOpen((o) => !o)}
-                        whileTap={{ scale: 0.85 }}
-                        aria-label="Toggle menu"
+            {/* Mobile Header */}
+            <header className="editorial-mobile-header">
+                <div className="mobile-header-bar">
+                    <NavLink to="/" className="mobile-brand font-serif" onClick={handleNavClick}>
+                        <span>PRANGYANJALI MEHER</span>
+                    </NavLink>
+
+                    <button
+                        className="mobile-menu-btn"
+                        onClick={() => {
+                            playClickSound();
+                            setMobileOpen(!mobileOpen);
+                        }}
+                        aria-label="Menu"
                     >
-                        <AnimatePresence mode="wait" initial={false}>
-                            {mobileOpen ? (
-                                <motion.span
-                                    key="close"
-                                    initial={{ rotate: -90, opacity: 0 }}
-                                    animate={{ rotate: 0, opacity: 1 }}
-                                    exit={{ rotate: 90, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <X size={26} />
-                                </motion.span>
-                            ) : (
-                                <motion.span
-                                    key="menu"
-                                    initial={{ rotate: 90, opacity: 0 }}
-                                    animate={{ rotate: 0, opacity: 1 }}
-                                    exit={{ rotate: -90, opacity: 0 }}
-                                    transition={{ duration: 0.2 }}
-                                >
-                                    <Menu size={26} />
-                                </motion.span>
-                            )}
-                        </AnimatePresence>
-                    </motion.button>
+                        {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+                    </button>
                 </div>
+            </header>
 
-                {/* Slide-in drawer */}
-                <AnimatePresence>
-                    {mobileOpen && (
-                        <>
-                            {/* backdrop */}
-                            <motion.div
-                                className="drawer-backdrop"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                onClick={() => setMobileOpen(false)}
-                            />
-                            {/* drawer */}
-                            <motion.div
-                                className="mobile-drawer"
-                                initial={{ x: '100%' }}
-                                animate={{ x: 0 }}
-                                exit={{ x: '100%' }}
-                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                            >
-                                <ul className="drawer-links">
-                                    {navLinks.map((link, i) => (
+            {/* Mobile Drawer */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <>
+                        <motion.div
+                            className="editorial-drawer-backdrop"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setMobileOpen(false)}
+                        />
+                        <motion.nav
+                            className="editorial-mobile-drawer"
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'spring', damping: 28, stiffness: 300 }}
+                        >
+                            <div className="drawer-top font-sans">
+                                <span>NAVIGATION</span>
+                                <button className="drawer-close" onClick={() => setMobileOpen(false)}>
+                                    <X size={20} />
+                                </button>
+                            </div>
+
+                            <ul className="drawer-links-stack">
+                                {navLinks.map((link, idx) => {
+                                    const active = isActive(link.path);
+                                    return (
                                         <motion.li
                                             key={link.path}
-                                            initial={{ opacity: 0, x: 40 }}
+                                            initial={{ opacity: 0, x: 20 }}
                                             animate={{ opacity: 1, x: 0 }}
-                                            transition={{ delay: i * 0.07 }}
+                                            transition={{ delay: idx * 0.05 }}
                                         >
                                             <NavLink
                                                 to={link.path}
                                                 end={link.path === '/'}
-                                                className={({ isActive }) =>
-                                                    isActive ? 'drawer-link active' : 'drawer-link'
-                                                }
-                                                onClick={() => setMobileOpen(false)}
+                                                className={`drawer-editorial-link font-serif ${active ? 'active' : ''}`}
+                                                onClick={() => {
+                                                    playClickSound();
+                                                    setMobileOpen(false);
+                                                }}
                                             >
-                                                <span className="drawer-icon">{link.icon}</span>
-                                                {link.name}
+                                                <span>{link.name}</span>
+                                                {active && <span className="drawer-dot">✦</span>}
                                             </NavLink>
                                         </motion.li>
-                                    ))}
-                                </ul>
-                            </motion.div>
-                        </>
-                    )}
-                </AnimatePresence>
-            </div>
+                                    );
+                                })}
+                            </ul>
+
+                            <div className="drawer-footer-actions">
+                                <a
+                                    href="/PRANGYANJALI-MEHER-%20Resume.pdf"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary"
+                                    style={{ width: '100%' }}
+                                >
+                                    View CV <Download size={15} />
+                                </a>
+                            </div>
+                        </motion.nav>
+                    </>
+                )}
+            </AnimatePresence>
         </>
     );
 };

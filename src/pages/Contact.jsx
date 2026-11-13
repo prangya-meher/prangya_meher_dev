@@ -1,30 +1,30 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react';
-import contactImg from '../assets/images/contact-illustration.png';
+import { Mail, MapPin, Phone, Send, CheckCircle, AlertCircle, Github, Linkedin, Copy, Check } from 'lucide-react';
+import { useTheme } from '../context/ThemeContext';
 import './Contact.css';
 
-/*
-  ┌──────────────────────────────────────────────────────────────┐
-  │  HOW TO GET YOUR FREE WEB3FORMS KEY (2 minutes):             │
-  │                                                              │
-  │  1. Go to  https://web3forms.com/                            │
-  │  2. Enter your email → click "Create Access Key"             │
-  │  3. Copy the key from the email they send you                │
-  │  4. Paste it below replacing  YOUR_WEB3FORMS_ACCESS_KEY      │
-  └──────────────────────────────────────────────────────────────┘
-*/
 const WEB3FORMS_ACCESS_KEY = '698598e7-4b97-4352-9b00-4b38c08c1b8b';
 
 const Contact = () => {
+    const { playClickSound } = useTheme();
     const [formData, setFormData] = useState({ name: '', email: '', message: '' });
     const [status, setStatus] = useState('idle'); // idle | loading | success | error
+    const [copiedEmail, setCopiedEmail] = useState(false);
 
     const handleChange = (e) =>
         setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
+    const handleCopyEmail = () => {
+        playClickSound();
+        navigator.clipboard.writeText('meherprangya@gmail.com');
+        setCopiedEmail(true);
+        setTimeout(() => setCopiedEmail(false), 2500);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        playClickSound();
         setStatus('loading');
 
         try {
@@ -65,99 +65,152 @@ const Contact = () => {
     const isError = status === 'error';
 
     return (
-        <section className="contact-section">
+        <section className="editorial-contact-page">
             <div className="container">
-                <motion.h2
-                    className="section-title text-gradient"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    Get In Touch
-                </motion.h2>
+                {/* Header */}
+                <div className="section-header">
+                    <span className="section-tag font-sans">CONTACT</span>
+                    <h1 className="section-title font-serif">
+                        LET'S CREATE SOMETHING MEANINGFUL.
+                    </h1>
+                    <p className="section-subtitle font-sans">
+                        I am currently available for full-time frontend/full-stack positions, freelance projects, and creative collaborations.
+                    </p>
+                </div>
 
-                <div className="contact-content">
+                <div className="editorial-contact-grid">
+                    {/* Left: Direct Information */}
+                    <div className="editorial-contact-info-panel">
+                        <div className="contact-meta-block">
+                            <span className="contact-meta-label font-sans">INQUIRIES & AVAILABILITY</span>
+                            <h3 className="contact-meta-headline font-serif">
+                                START A CONVERSATION.
+                            </h3>
+                            <p className="contact-meta-body font-sans">
+                                Whether you have a project to architect, an engineering position to fill, or want to discuss modern web technologies, feel free to reach out.
+                            </p>
+                        </div>
 
-                    {/* Illustration */}
-                    <motion.div
-                        className="contact-image-wrapper"
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2, duration: 0.8 }}
-                    >
-                        <img src={contactImg} alt="Contact Illustration" className="contact-img" />
-                    </motion.div>
+                        {/* Direct Channels */}
+                        <div className="editorial-channels-list">
+                            <div className="editorial-channel-item">
+                                <span className="channel-type font-sans">DIRECT EMAIL</span>
+                                <div className="channel-value-row">
+                                    <button className="channel-email-btn font-sans" onClick={handleCopyEmail}>
+                                        meherprangya@gmail.com
+                                    </button>
+                                    <button
+                                        className="channel-copy-icon-btn"
+                                        onClick={handleCopyEmail}
+                                        title="Copy email"
+                                        aria-label="Copy Email"
+                                    >
+                                        {copiedEmail ? <Check size={14} /> : <Copy size={14} />}
+                                    </button>
+                                </div>
+                            </div>
 
-                    {/* Form Card */}
-                    <motion.div
-                        className="contact-form-container glass-card"
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.4, duration: 0.8 }}
-                    >
-                        {/* Contact Info */}
-                        <div className="contact-info">
-                            <div className="info-item">
-                                <Mail className="info-icon" />
-                                <a href="mailto:meherprangya@gmail.com" className="info-link">
-                                    meherprangya@gmail.com
+                            <div className="editorial-channel-item">
+                                <span className="channel-type font-sans">TELEPHONE</span>
+                                <a href="tel:+918117862163" className="channel-phone-link font-sans">
+                                    +91 8117862163
                                 </a>
                             </div>
-                            <div className="info-item">
-                                <MapPin className="info-icon" />
-                                <span>Odisha, India</span>
+
+                            <div className="editorial-channel-item">
+                                <span className="channel-type font-sans">LOCATION</span>
+                                <span className="channel-loc-text font-sans">
+                                    Odisha, India (Available for Worldwide Remote)
+                                </span>
                             </div>
-                            <div className="info-item">
-                                <Phone className="info-icon" />
-                                <a href="tel:+918117862163" className="info-link">+91 8117862163</a>
-                            </div>
-                            <div className="contact-socials">
+                        </div>
+
+                        {/* Social profiles */}
+                        <div className="contact-social-row">
+                            <span className="channel-type font-sans">PROFILES</span>
+                            <div className="social-links-wrap font-sans">
                                 <a
                                     href="https://github.com/prangya-meher"
-                                    target="_blank" rel="noopener noreferrer"
-                                    className="social-icon-link" aria-label="GitHub"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="editorial-social-link"
+                                    onClick={playClickSound}
                                 >
-                                    <Github size={24} />
+                                    GITHUB &rarr;
                                 </a>
                                 <a
                                     href="https://www.linkedin.com/in/prangyanjali-meher-aa6b56316"
-                                    target="_blank" rel="noopener noreferrer"
-                                    className="social-icon-link" aria-label="LinkedIn"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="editorial-social-link"
+                                    onClick={playClickSound}
                                 >
-                                    <Linkedin size={24} />
+                                    LINKEDIN &rarr;
                                 </a>
                             </div>
                         </div>
 
-                        {/* Form */}
-                        <form onSubmit={handleSubmit} className="contact-form">
-                            {/* Honeypot (hidden – anti-spam) */}
+                        {/* Monogram Badge */}
+                        <div className="contact-monogram-box">
+                            <div className="monogram-capsule-stone font-serif">
+                                <span>PM</span>
+                            </div>
+                            <span className="monogram-badge-year font-sans">ESTD 2026</span>
+                        </div>
+                    </div>
+
+                    {/* Right: Message Dispatch Form */}
+                    <div className="editorial-contact-form-panel">
+                        <div className="form-panel-top font-sans">
+                            <span>DISPATCH INQUIRY</span>
+                            <span>WEB3FORMS ENCRYPTED</span>
+                        </div>
+
+                        <form onSubmit={handleSubmit} className="editorial-form-body font-sans">
+                            {/* Honeypot */}
                             <input type="checkbox" name="botcheck" style={{ display: 'none' }} />
 
-                            <div className="input-group">
+                            <div className="editorial-field-item">
+                                <label className="editorial-label" htmlFor="name">
+                                    YOUR NAME *
+                                </label>
                                 <input
+                                    id="name"
                                     type="text"
                                     name="name"
-                                    placeholder="Your Name"
+                                    className="editorial-text-input"
+                                    placeholder="e.g. Eleanor Vance"
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="input-group">
+
+                            <div className="editorial-field-item">
+                                <label className="editorial-label" htmlFor="email">
+                                    YOUR EMAIL ADDRESS *
+                                </label>
                                 <input
+                                    id="email"
                                     type="email"
                                     name="email"
-                                    placeholder="Your Email"
+                                    className="editorial-text-input"
+                                    placeholder="e.g. eleanor@studio.com"
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
                                 />
                             </div>
-                            <div className="input-group">
+
+                            <div className="editorial-field-item">
+                                <label className="editorial-label" htmlFor="message">
+                                    PROJECT OR ROLE DETAILS *
+                                </label>
                                 <textarea
+                                    id="message"
                                     name="message"
-                                    placeholder="Your Message"
+                                    className="editorial-textarea"
+                                    placeholder="Describe the opportunity, scope, or timeline..."
                                     rows="5"
                                     value={formData.message}
                                     onChange={handleChange}
@@ -165,37 +218,40 @@ const Contact = () => {
                                 />
                             </div>
 
-                            <motion.button
+                            <button
                                 type="submit"
-                                className={`btn btn-primary submit-btn ${isSuccess ? 'submitted' : ''}`}
-                                whileTap={{ scale: 0.97 }}
+                                className="btn btn-primary submit-action-btn"
                                 disabled={isLoading}
                             >
-                                {isLoading ? 'Sending…'
-                                    : isSuccess ? 'Sent!'
-                                        : isError ? 'Try again'
-                                            : 'Send Message'}
-                                {isSuccess ? <CheckCircle size={20} />
-                                    : isError ? <AlertCircle size={20} />
-                                        : <Send size={20} />}
-                            </motion.button>
+                                {isLoading ? (
+                                    <>DISPATCHING MESSAGE...</>
+                                ) : isSuccess ? (
+                                    <>MESSAGE TRANSMITTED ✓</>
+                                ) : isError ? (
+                                    <>ERROR. PLEASE TRY AGAIN &rarr;</>
+                                ) : (
+                                    <>SEND MESSAGE &rarr;</>
+                                )}
+                            </button>
                         </form>
-                    </motion.div>
+                    </div>
                 </div>
 
-                {/* Success / Error toast */}
+                {/* Floating Notification */}
                 <AnimatePresence>
                     {(isSuccess || isError) && (
                         <motion.div
-                            className={`popup-msg ${isError ? 'popup-error' : ''}`}
-                            initial={{ opacity: 0, y: 50, scale: 0.8 }}
-                            animate={{ opacity: 1, y: 0, scale: 1 }}
-                            exit={{ opacity: 0, y: 50, scale: 0.8 }}
+                            className={`editorial-toast ${isError ? 'toast-err' : 'toast-ok'} font-sans`}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: 30 }}
+                            transition={{ duration: 0.25 }}
                         >
-                            {isSuccess
-                                ? <><CheckCircle size={30} color="#10b981" /><p>Message sent! I'll reply soon. 🎉</p></>
-                                : <><AlertCircle size={30} color="#ef4444" /><p>Failed to send. Please email me directly.</p></>
-                            }
+                            {isSuccess ? (
+                                <span>Message delivered successfully. I will be in touch shortly.</span>
+                            ) : (
+                                <span>Submission error. Please email directly at meherprangya@gmail.com</span>
+                            )}
                         </motion.div>
                     )}
                 </AnimatePresence>

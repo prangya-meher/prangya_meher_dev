@@ -1,0 +1,437 @@
+/* ==========================================================================
+   HERO GSAP  —  Full-bleed editorial hero
+   Image covers entire section from center-right, text overlaps on top
+   Reference: PORT/FOLIO sits across linen-left AND over photo
+   ========================================================================== */
+
+/* ── Section: full viewport height, single stacking context ── */
+.hero-gsap-section {
+    position: relative;
+    width: 100%;
+    /* viewport height minus navbar (~80px) */
+    height: calc(100vh - 80px);
+    min-height: 560px;
+    max-height: 900px;
+    overflow: hidden;
+    background: #e8e3dc;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
+}
+
+/* ── Full-bleed image wrapper ── */
+.hero-bg-wrap {
+    position: absolute;
+    /* image occupies right ~58% of section */
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 36%;          /* starts at ~36% from left — text overlaps left edge */
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-bg-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    will-change: transform, opacity;
+    /* very subtle warm desaturation — not full grayscale, keeps natural tones */
+    filter: grayscale(15%) contrast(103%) brightness(0.98);
+}
+
+/* ── Left linen gradient wash ──
+   Covers left ~55% and fades out, keeps text readable against photo */
+.hero-left-wash {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    /* strong linen on left → transparent at ~60% */
+    background: linear-gradient(
+        to right,
+        #e8e3dc 0%,
+        #e8e3dc 38%,
+        rgba(232, 227, 220, 0.88) 46%,
+        rgba(232, 227, 220, 0.4) 56%,
+        transparent 68%
+    );
+    background-size: 200% 200%;
+    pointer-events: none;
+}
+
+/* ── Mouse glow ── */
+.hero-mouse-glow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        rgba(168, 149, 127, 0.1) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+    z-index: 2;
+    will-change: transform;
+}
+
+/* ── Floating decorative circles ── */
+.deco-circle-1 {
+    position: absolute;
+    top: 20%;
+    left: 42%;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px solid rgba(23, 23, 23, 0.07);
+    pointer-events: none;
+    z-index: 2;
+    will-change: transform;
+}
+
+.deco-circle-2 {
+    position: absolute;
+    bottom: 22%;
+    left: 32%;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    border: 1px solid rgba(23, 23, 23, 0.1);
+    pointer-events: none;
+    z-index: 2;
+    will-change: transform;
+}
+
+/* ── Content wrapper — sits above everything ── */
+.hero-content-wrap {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+/* ── Top meta bar ── */
+.hero-meta-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-top: 28px;
+    padding-bottom: 20px;
+    margin-bottom: 0;
+    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
+}
+
+.meta-role-gsap {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.meta-right-gsap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.meta-location-gsap {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+/* ── Rotating badge ── */
+.rotating-badge-container-gsap {
+    position: relative;
+    width: 82px;
+    height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spinning-badge-svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+}
+
+.badge-star-gsap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    line-height: 1;
+}
+
+/* ── Left text column ── */
+.hero-text-col {
+    /* sits in left ~50% — text bleeds over image on purpose */
+    width: 52%;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+}
+
+/* Name label */
+.hero-name-lbl {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    color: var(--text-primary);
+    display: block;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+/* ── Giant PORT / FOLIO title ── */
+.hero-giant-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-weight: 300;
+    /* large enough to match reference — takes full text column width */
+    font-size: clamp(5rem, 11.5vw, 12rem);
+    line-height: 0.87;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin: 0 0 24px 0;
+}
+
+/* Each line clips its chars from below for clean GSAP reveal */
+.title-line {
+    display: block;
+    overflow: hidden;
+    line-height: 0.95;
+}
+
+/* Individual characters */
+.char {
+    display: inline-block;
+    will-change: transform, opacity;
+}
+
+/* ── Tagline row ── */
+.hero-tagline-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 32px;
+}
+
+.tagline-rule {
+    width: 32px;
+    height: 1px;
+    background: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.tagline-text {
+    font-size: 0.69rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ── CTA row ── */
+.hero-cta-gsap {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* Transparent VIEW WORK button — matches reference */
+.hero-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    background: transparent;
+    border: 1.5px solid var(--text-primary);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: color 0.35s ease, border-color 0.35s ease;
+}
+
+/* Sliding background fill on hover */
+.hero-view-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--text-primary);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 0;
+}
+
+.hero-view-btn:hover::before {
+    transform: scaleX(1);
+}
+
+.hero-view-btn:hover {
+    color: #EAE6E1;
+    border-color: var(--text-primary);
+}
+
+/* Keep text + arrow above the pseudo-element */
+.hero-view-btn > *,
+.hero-view-btn {
+    position: relative;
+    z-index: 1;
+}
+
+/* Arrow nudge on hover */
+.hero-view-btn .btn-arrow {
+    transition: transform 0.35s ease;
+}
+
+.hero-view-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* Plain text CV link — no border, no background */
+.hero-cv-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-decoration: none;
+    background: none;
+    border: none;
+    padding: 14px 8px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.hero-cv-link:hover {
+    color: var(--text-primary);
+}
+
+.hero-cv-link .cv-arrow {
+    transition: transform 0.3s ease;
+}
+
+.hero-cv-link:hover .cv-arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero-bg-wrap {
+        left: 42%;
+    }
+
+    .hero-text-col {
+        width: 60%;
+    }
+
+    .hero-left-wash {
+        background: linear-gradient(
+            to right,
+            #e8e3dc 0%,
+            #e8e3dc 42%,
+            rgba(232, 227, 220, 0.9) 50%,
+            rgba(232, 227, 220, 0.4) 60%,
+            transparent 72%
+        );
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-gsap-section {
+        height: auto;
+        min-height: 100svh;
+        max-height: none;
+    }
+
+    .hero-bg-wrap {
+        left: 0;
+        top: auto;
+        bottom: 0;
+        height: 55%;
+        /* on mobile: photo shows in bottom half */
+    }
+
+    .hero-left-wash {
+        background: linear-gradient(
+            to bottom,
+            #e8e3dc 0%,
+            #e8e3dc 40%,
+            rgba(232, 227, 220, 0.6) 55%,
+            transparent 80%
+        );
+    }
+
+    .hero-text-col {
+        width: 100%;
+        padding-top: 16px;
+        padding-bottom: 52vw; /* push above photo area */
+    }
+
+    .hero-giant-title {
+        font-size: clamp(4rem, 17vw, 6.5rem);
+    }
+
+    .meta-location-gsap {
+        display: none;
+    }
+
+    .deco-circle-1,
+    .deco-circle-2 {
+        display: none;
+    }
+
+    .rotating-badge-container-gsap {
+        width: 68px;
+        height: 68px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-giant-title {
+        font-size: clamp(3.5rem, 19vw, 5.5rem);
+    }
+
+    .hero-name-lbl {
+        font-size: 0.65rem;
+    }
+
+    .tagline-text {
+        font-size: 0.6rem;
+    }
+
+    .hero-cta-gsap {
+        gap: 10px;
+    }
+}

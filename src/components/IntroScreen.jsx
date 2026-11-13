@@ -1,88 +1,93 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import wavingImg from '../assets/images/waving-removebg-preview.png';
+import { motion } from 'framer-motion';
 import './IntroScreen.css';
 
-const loadingTexts = [
-    "Initializing components...",
-    "Compiling styling...",
-    "Fetching project data...",
-    "Optimizing assets...",
-    "Almost ready..."
+const steps = [
+    'INITIALIZING ARCHITECTURE',
+    'COMPILING COMPONENT DESIGN SYSTEMS',
+    'MOUNTING SELECTED WORK & CASE STUDIES',
+    'PORTFOLIO READY'
 ];
 
-const IntroScreen = () => {
-    const [textIndex, setTextIndex] = useState(0);
+const IntroScreen = ({ onComplete }) => {
+    const [currentStep, setCurrentStep] = useState(0);
+    const [progress, setProgress] = useState(20);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setTextIndex(prev => Math.min(prev + 1, loadingTexts.length - 1));
-        }, 600);
-        return () => clearInterval(interval);
-    }, []);
+        const stepTimer = setInterval(() => {
+            setCurrentStep((prev) => {
+                if (prev < steps.length - 1) return prev + 1;
+                return prev;
+            });
+        }, 360);
+
+        const progressTimer = setInterval(() => {
+            setProgress((prev) => {
+                if (prev >= 100) {
+                    clearInterval(progressTimer);
+                    return 100;
+                }
+                return prev + 25;
+            });
+        }, 220);
+
+        const exitTimer = setTimeout(() => {
+            if (onComplete) onComplete();
+        }, 1800);
+
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+                if (onComplete) onComplete();
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            clearInterval(stepTimer);
+            clearInterval(progressTimer);
+            clearTimeout(exitTimer);
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [onComplete]);
+
     return (
         <motion.div
-            className="intro-section"
+            className="editorial-intro-overlay"
             initial={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.1, filter: "blur(10px)" }}
-            transition={{ duration: 1, ease: 'easeInOut' }}
+            exit={{ opacity: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }}
+            onClick={() => onComplete && onComplete()}
         >
-            <div className="intro-content">
-                {/* Animated Girl Character Element */}
-                <div className="desk-scene-container">
-                    {/* 3D Character at desk */}
-                    <motion.div
-                        className="character-scene"
-                        initial={{ scale: 0.9, y: 20, opacity: 0 }}
-                        animate={{
-                            scale: 1,
-                            y: [0, -15, 0], // Floating activity
-                            opacity: 1
-                        }}
-                        transition={{
-                            y: {
-                                repeat: Infinity,
-                                duration: 3,
-                                ease: "easeInOut"
-                            },
-                            opacity: { duration: 1 },
-                            scale: { duration: 1 }
-                        }}
-                    >
-                        <img
-                            src={wavingImg}
-                            alt="Frontend Girl Waving"
-                            className="character-img"
-                        />
-                    </motion.div>
+            <div className="editorial-intro-card">
+                <div className="intro-meta-top font-sans">
+                    <span>FRONTEND & FULL-STACK DEVELOPER</span>
+                    <span>ESTD 2026</span>
                 </div>
 
-                {/* Dynamic Text Loading Animation */}
-                <motion.div
-                    className="intro-text"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1 }}
-                >
-                    <h1 className="intro-title">&lt;Portfolio /&gt;</h1>
-                    <div className="text-loading-container">
-                        <AnimatePresence mode="wait">
-                            <motion.p
-                                key={textIndex}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -10 }}
-                                transition={{ duration: 0.2 }}
-                                className="loading-dynamic-text text-gradient"
-                            >
-                                {loadingTexts[textIndex]}
-                            </motion.p>
-                        </AnimatePresence>
+                <div className="intro-center-title font-serif">
+                    <h1>PRANGYANJALI MEHER</h1>
+                    <p className="intro-subtitle font-sans">PORTFOLIO & ARCHITECTURE</p>
+                </div>
+
+                <div className="intro-bottom-progress">
+                    <div className="intro-step-label font-sans">
+                        <span>{steps[currentStep]}</span>
+                        <span>{Math.min(progress, 100)}%</span>
                     </div>
-                </motion.div>
+                    <div className="intro-bar-track">
+                        <motion.div
+                            className="intro-bar-fill"
+                            initial={{ width: '15%' }}
+                            animate={{ width: `${Math.min(progress, 100)}%` }}
+                            transition={{ ease: 'easeOut', duration: 0.2 }}
+                        />
+                    </div>
+                </div>
+
+                <div className="intro-skip-prompt font-sans">
+                    Click anywhere or press Esc to enter &rarr;
+                </div>
             </div>
-
-
         </motion.div>
     );
 };

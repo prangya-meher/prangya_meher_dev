@@ -3,51 +3,95 @@ import weatherImg from '../assets/images/projects/weather.jpg';
 import twogocoImg from '../assets/images/projects/twogoco.jpg';
 import taskflowImg from '../assets/images/projects/taskflow.jpg';
 import codenpixelsImg from '../assets/images/projects/codenpixels.jpg';
+import netflixImg from '../assets/images/projects/netflix.jpg';
+import notesImg from '../assets/images/projects/notes.jpg';
+import coffeeImg from '../assets/images/projects/coffee.jpg';
+import todoImg from '../assets/images/projects/todo.jpg';
 
 export const projectsData = [
     {
         id: 'taskflow',
-        title: 'TaskFlow – Task Management',
-        description: 'A full-stack Kanban-style task management application built with React, Vite, Node.js, Express.js, and SQLite. Features RESTful APIs for workflow management, relational data modeling, and an interactive drag-and-drop task board with priority management.',
+        title: 'TaskFlow – Task Management Engine',
+        category: 'fullstack',
+        description: 'A robust full-stack Kanban task management application built with React, Vite, Node.js, Express.js, and SQLite. Features RESTful APIs for workflow orchestration, relational data modeling, priority tracking, and a fluid drag-and-drop board designed for streamlined project management.',
         image: taskflowImg,
-        tags: ['React', 'Node.js', 'Express.js', 'SQLite'],
+        tags: ['React', 'Node.js', 'Express.js', 'SQLite', 'REST API'],
         link: 'https://taskflowfrontend-production-a5b4.up.railway.app/',
-        github: 'https://github.com/prangya-meher/taskflow'
+        github: 'https://github.com/prangya-meher/taskflow',
+        featured: true,
+        highlights: [
+            'Full-stack architecture with decoupled React SPA and Express REST backend',
+            'Relational schema design with SQLite for persistent card and column state',
+            'Interactive drag-and-drop Kanban board with immediate optimistic UI updates',
+            'Deployed on Railway with environment-based configuration management'
+        ]
     },
     {
         id: 'codenpixels',
-        title: 'CodeNPixels – Web Platform',
-        description: 'A responsive modern business platform showcasing AI-powered web development, modern web applications, UI/UX, and digital solutions. Built with reusable React component architecture, Framer Motion animations, and fluid responsive layouts.',
+        title: 'CodeNPixels – Modern Web Studio Platform',
+        category: 'frontend',
+        description: 'A responsive digital platform showcasing modern web applications, UI/UX solutions, and AI-assisted workflows. Engineered with modular React component architecture, Framer Motion transitions, and fluid responsive styling across all device viewports.',
         image: codenpixelsImg,
         tags: ['React.js', 'Vite', 'Framer Motion', 'React Router'],
         link: 'https://codenpixels.in/',
-        github: 'https://github.com/prangya-meher/codenpixxels_'
-    },
-    {
-        id: 'rock-paper-scissors',
-        title: 'Rock Paper Scissors',
-        description: 'An interactive game featuring smooth animations and logic-driven gameplay. Users can play against a randomized AI, with real-time score tracking and a modern, vibrant interface built with vanilla JavaScript.',
-        image: rpsImg,
-        tags: ['HTML', 'CSS', 'JavaScript'],
-        link: 'https://game-lvft795s3-prangyanjali-mehers-projects.vercel.app/',
-        github: 'https://github.com/prangya-meher/GameHub'
-    },
-    {
-        id: 'weather-app',
-        title: 'Dynamic Weather App',
-        description: 'A clean, intuitive weather application that fetches real-time data from a global weather API. Features city-based searching, dynamic background changes based on weather conditions, and detailed atmospheric data.',
-        image: weatherImg,
-        tags: ['HTML', 'CSS', 'JavaScript', 'API'],
-        link: 'https://weather-app-tan-six-39.vercel.app/',
-        github: 'https://github.com/prangya-meher/Weather-App'
+        github: 'https://github.com/prangya-meher/codenpixxels_',
+        featured: true,
+        highlights: [
+            'Component-driven architecture optimized for reusable interactive blocks',
+            'Framer Motion spring physics for smooth scroll reveals and layout transitions',
+            'Lighthouse score optimization for fast first contentful paint (FCP)',
+            'Clean multi-route architecture with React Router 7'
+        ]
     },
     {
         id: 'twogoco-clone',
-        title: 'Twogoco UI Clone',
-        description: 'A premium landing page clone showcasing advanced frontend techniques. Implements GSAP for ultra-smooth entrance animations and LocomotiveJS for a modern, high-end "smooth scroll" experience.',
+        title: 'Twogoco UI – High-End Motion Clone',
+        category: 'motion',
+        description: 'A high-end landing page recreation showcasing advanced frontend motion engineering. Implements GSAP for synchronized entrance animations and Locomotive Scroll for an ultra-smooth, inertial scrolling user experience.',
         image: twogocoImg,
-        tags: ['GSAP', 'LocomotiveJS', 'JavaScript'],
+        tags: ['GSAP', 'LocomotiveJS', 'JavaScript', 'CSS Motion'],
         link: 'https://twogoco-clone-nohjy699e-prangyanjali-mehers-projects.vercel.app/',
-        github: 'https://github.com/prangya-meher/twogoco_clone'
+        github: 'https://github.com/prangya-meher/twogoco_clone',
+        featured: true,
+        highlights: [
+            'Deep GSAP timeline integration for orchestrated stagger animations',
+            'Locomotive Scroll implementation with buttery smooth page inertia',
+            'Pixel-precise layout reproduction matching high-standard agency designs',
+            'Fully responsive across mobile, tablet, and widescreen displays'
+        ]
+    },
+    {
+        id: 'weather-app',
+        title: 'Dynamic Real-Time Weather Console',
+        category: 'webapp',
+        description: 'A clean, intuitive meteorological application fetching live data from global weather APIs. Features asynchronous city-based search, responsive state changes based on atmospheric conditions, and detailed atmospheric data metrics.',
+        image: weatherImg,
+        tags: ['JavaScript', 'REST API', 'CSS3', 'Async/Await'],
+        link: 'https://weather-app-tan-six-39.vercel.app/',
+        github: 'https://github.com/prangya-meher/Weather-App',
+        featured: false,
+        highlights: [
+            'Asynchronous API fetching with structured error handling for invalid cities',
+            'Dynamic UI styling that adapts based on temperature and atmospheric metrics',
+            'Lightweight vanilla JavaScript architecture for zero-overhead performance',
+            'Detailed metrics breakdown: humidity, wind velocity, and condition indices'
+        ]
+    },
+    {
+        id: 'rock-paper-scissors',
+        title: 'Interactive Rock Paper Scissors Arena',
+        category: 'webapp',
+        description: 'An interactive browser game featuring smooth state transitions and logic-driven gameplay. Users play against an algorithm with instant score tracking, persistent state, and an engaging visual feedback loop.',
+        image: rpsImg,
+        tags: ['JavaScript', 'DOM Manipulation', 'CSS Animations'],
+        link: 'https://game-lvft795s3-prangyanjali-mehers-projects.vercel.app/',
+        github: 'https://github.com/prangya-meher/GameHub',
+        featured: false,
+        highlights: [
+            'Pure vanilla JavaScript game logic with randomized decision algorithms',
+            'Real-time win/loss/tie state computation and round score tracking',
+            'Engaging CSS keyframe animations for tactile feedback on each round',
+            'Clean responsive design playable on mobile and desktop'
+        ]
     }
 ];
