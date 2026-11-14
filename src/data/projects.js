@@ -3,6 +3,7 @@ import weatherImg from '../assets/images/projects/weather.jpg';
 import twogocoImg from '../assets/images/projects/twogoco.jpg';
 import taskflowImg from '../assets/images/projects/taskflow.jpg';
 import codenpixelsImg from '../assets/images/projects/codenpixels.jpg';
+import truptiImg from '../assets/images/projects/truptipadhi.jpg';
 import netflixImg from '../assets/images/projects/netflix.jpg';
 import notesImg from '../assets/images/projects/notes.jpg';
 import coffeeImg from '../assets/images/projects/coffee.jpg';
@@ -24,6 +25,23 @@ export const projectsData = [
             'Relational schema design with SQLite for persistent card and column state',
             'Interactive drag-and-drop Kanban board with immediate optimistic UI updates',
             'Deployed on Railway with environment-based configuration management'
+        ]
+    },
+    {
+        id: 'trupti-padhi',
+        title: 'Trupti Padhi – Market & Data Analytics Portfolio',
+        category: 'analytics',
+        description: 'A bespoke editorial portfolio designed and developed for a Market Research Analyst & Data Analytics Consultant. Features custom interactive BI dashboard showcases, predictive modeling case studies, animated progress milestones, and high-impact visual storytelling for consumer behavior intelligence.',
+        image: truptiImg,
+        tags: ['Data Analytics', 'Market Intelligence', 'Power BI', 'JavaScript', 'Responsive UI'],
+        link: 'https://truptipadhi-chi.vercel.app/',
+        github: 'https://github.com/prangya-meher/truptipadhi_',
+        featured: true,
+        highlights: [
+            'Bespoke luxury editorial aesthetic pairing Cinzel display serif and Plus Jakarta Sans',
+            'Interactive fullscreen splash intro with animated progress track and monogram branding',
+            'Interactive expandable case study drawers showcasing data science & BI analytics projects',
+            'Fully responsive across all screen sizes with lightweight, zero-dependency vanilla architecture'
         ]
     },
     {
