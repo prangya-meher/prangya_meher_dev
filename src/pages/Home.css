@@ -583,7 +583,7 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN (ALL DEVICE SIZES)
    ========================================================================== */
 @media (max-width: 1024px) {
     .hero-giant-title {
@@ -604,11 +604,34 @@
 
     .about-tri-grid {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-center-photo {
+        max-width: 480px;
     }
 
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 36px;
+    }
+}
+
+@media (max-width: 899px) {
+    .editorial-home {
+        padding-top: 60px;
+    }
+
+    .editorial-about-section {
+        padding: 70px 0;
+    }
+
+    .editorial-quote-banner {
+        padding: 70px 0;
+    }
+
+    .editorial-dark-footer {
+        padding: 70px 0 50px 0;
     }
 }
 
@@ -628,5 +651,63 @@
 
     .hero-portrait-frame {
         height: 380px;
+    }
+
+    .about-lead-title {
+        font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+    }
+
+    .about-lead-body {
+        font-size: 0.88rem;
+    }
+
+    .quote-text {
+        font-size: clamp(1.4rem, 5.2vw, 2.1rem);
+    }
+
+    .footer-headline {
+        font-size: clamp(1.8rem, 6vw, 2.4rem);
+    }
+}
+
+@media (max-width: 480px) {
+    .editorial-home {
+        padding-top: 55px;
+    }
+
+    .editorial-about-section {
+        padding: 50px 0;
+    }
+
+    .about-lead-title {
+        font-size: clamp(1.6rem, 7vw, 2.1rem);
+    }
+
+    .about-center-photo {
+        max-width: 100%;
+    }
+
+    .editorial-quote-banner {
+        padding: 50px 0;
+    }
+
+    .quote-mark {
+        font-size: 3.5rem;
+    }
+
+    .quote-text {
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
+    }
+
+    .editorial-dark-footer {
+        padding: 50px 0 35px 0;
+    }
+
+    .footer-headline {
+        font-size: clamp(1.6rem, 6.5vw, 2.1rem);
+    }
+
+    .footer-sub {
+        font-size: 0.82rem;
     }
 }

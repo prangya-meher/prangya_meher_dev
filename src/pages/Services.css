@@ -362,7 +362,7 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE BREAKPOINTS (ALL DEVICE SIZES)
    ========================================================================== */
 @media (max-width: 1080px) {
     .service-content-grid {
@@ -375,13 +375,34 @@
     }
 }
 
+@media (max-width: 900px) {
+    .services-page-accordion {
+        padding-top: 80px;
+    }
+
+    .services-page-container {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 10px;
+    }
+}
+
 @media (max-width: 680px) {
+    .services-hero-heading {
+        font-size: clamp(2rem, 7.5vw, 2.8rem);
+        letter-spacing: 0.06em;
+    }
+
+    .services-eyebrow-wrapper {
+        margin-bottom: 30px;
+    }
+
     .service-row-header {
         padding: 16px 0;
     }
 
     .service-title-cluster {
-        gap: 10px;
+        gap: 8px;
     }
 
     .service-accordion-title {
@@ -389,21 +410,68 @@
     }
 
     .service-sub-label {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
+    }
+
+    .service-expanded-panel {
+        padding-bottom: 28px;
+    }
+
+    .service-desc-text {
+        font-size: 0.88rem;
+    }
+
+    .service-bullet-line {
+        font-size: 0.84rem;
     }
 
     .methodology-grid {
         grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .methodology-card {
+        padding: 24px 20px;
     }
 
     .services-bottom-cta {
-        padding: 32px 24px;
+        padding: 30px 20px;
         flex-direction: column;
         align-items: flex-start;
+        gap: 24px;
+    }
+
+    .cta-lead {
+        font-size: 1.8rem;
+    }
+
+    .cta-desc {
+        font-size: 0.9rem;
     }
 
     .service-cta-button {
         width: 100%;
         justify-content: center;
+        padding: 14px 24px;
+    }
+}
+
+@media (max-width: 420px) {
+    .services-page-container {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .services-hero-heading {
+        font-size: clamp(1.7rem, 7vw, 2.2rem);
+        letter-spacing: 0.04em;
+    }
+
+    .service-accordion-title {
+        font-size: 1.1rem;
+    }
+
+    .services-bottom-cta {
+        padding: 24px 16px;
     }
 }

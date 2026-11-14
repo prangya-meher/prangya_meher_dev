@@ -111,6 +111,12 @@ ul {
   }
 }
 
+@media (max-width: 480px) {
+  .container {
+    padding: 0 18px;
+  }
+}
+
 /* Typography Helpers */
 .font-serif {
   font-family: var(--font-serif);

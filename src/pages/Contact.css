@@ -480,7 +480,7 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE BREAKPOINTS
+   RESPONSIVE BREAKPOINTS (ALL DEVICES)
    ========================================================================== */
 @media (max-width: 1080px) {
     .contact-bento-grid {
@@ -488,8 +488,8 @@
     }
 
     .bento-photo-card {
-        min-height: 380px;
-        max-height: 440px;
+        min-height: 360px;
+        max-height: 420px;
     }
 
     .bento-bottom-row {
@@ -507,7 +507,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
     .contact-reference-page {
         padding: 0;
     }
@@ -515,7 +515,17 @@
     .contact-teaser-view {
         min-height: 100vh;
         min-height: 100svh;
-        padding: 40px 18px;
+        padding: 70px 20px 40px 20px;
+    }
+
+    .contact-bento-view {
+        padding: 75px 16px 30px 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .teaser-main-heading {
+        font-size: clamp(3.4rem, 12vw, 6rem);
     }
 
     .teaser-circle-action {
@@ -523,10 +533,6 @@
         height: 90px;
         font-size: 0.62rem;
         margin-top: 36px;
-    }
-
-    .contact-bento-view {
-        padding: 60px 16px 30px 16px;
     }
 
     .bento-form-card {
@@ -548,5 +554,68 @@
 
     .bento-social-row {
         flex: 1 1 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-teaser-view {
+        padding: 65px 16px 30px 16px;
+    }
+
+    .teaser-main-heading {
+        font-size: clamp(2.6rem, 13vw, 3.8rem);
+        line-height: 1;
+    }
+
+    .teaser-uptitle {
+        letter-spacing: 0.2em;
+        font-size: 0.72rem;
+        margin-bottom: 16px;
+    }
+
+    .teaser-circle-action {
+        width: 80px;
+        height: 80px;
+        font-size: 0.58rem;
+        margin-top: 28px;
+    }
+
+    .contact-bento-view {
+        padding: 68px 12px 24px 12px;
+    }
+
+    .bento-photo-card {
+        min-height: 240px;
+        max-height: 280px;
+        border-radius: 16px;
+    }
+
+    .bento-form-card {
+        padding: 20px 14px;
+        border-radius: 16px;
+    }
+
+    .bento-headline {
+        font-size: clamp(1.8rem, 7vw, 2.2rem);
+    }
+
+    .bento-form-tagline {
+        font-size: 0.82rem;
+    }
+
+    .bento-submit-btn {
+        height: 48px;
+        font-size: 0.72rem;
+    }
+
+    .bento-card-subtle {
+        padding: 18px 14px;
+        border-radius: 16px;
+    }
+}
+
+@media (max-width: 380px) {
+    .teaser-main-heading {
+        font-size: clamp(2.2rem, 12vw, 3rem);
     }
 }

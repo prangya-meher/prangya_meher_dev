@@ -456,23 +456,46 @@
 }
 
 /* ==========================================================================
-   6. RESPONSIVE MEDIA QUERIES
+   6. RESPONSIVE MEDIA QUERIES (COMPREHENSIVE DEVICE COVERAGE)
    ========================================================================== */
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
+    .coverflow-stage-viewport {
+        max-width: 1000px;
+        min-height: 380px;
+        height: 48vh;
+    }
     .coverflow-card-container {
-        width: min(390px, 66vw);
+        width: min(400px, 58vw);
     }
     .coverflow-card-container.pos--1 {
-        transform: translateX(-240px) translateZ(-70px) rotateY(26deg) scale(0.8);
+        transform: translateX(-260px) translateZ(-70px) rotateY(26deg) scale(0.82);
     }
     .coverflow-card-container.pos-1 {
-        transform: translateX(240px) translateZ(-70px) rotateY(-26deg) scale(0.8);
+        transform: translateX(260px) translateZ(-70px) rotateY(-26deg) scale(0.82);
     }
     .coverflow-card-container.pos--2 {
-        transform: translateX(-440px) translateZ(-160px) rotateY(34deg) scale(0.65);
+        transform: translateX(-470px) translateZ(-160px) rotateY(34deg) scale(0.66);
     }
     .coverflow-card-container.pos-2 {
-        transform: translateX(440px) translateZ(-160px) rotateY(-34deg) scale(0.65);
+        transform: translateX(470px) translateZ(-160px) rotateY(-34deg) scale(0.66);
+    }
+}
+
+@media (max-width: 1024px) {
+    .coverflow-card-container {
+        width: min(370px, 62vw);
+    }
+    .coverflow-card-container.pos--1 {
+        transform: translateX(-230px) translateZ(-70px) rotateY(26deg) scale(0.8);
+    }
+    .coverflow-card-container.pos-1 {
+        transform: translateX(230px) translateZ(-70px) rotateY(-26deg) scale(0.8);
+    }
+    .coverflow-card-container.pos--2 {
+        transform: translateX(-420px) translateZ(-150px) rotateY(34deg) scale(0.64);
+    }
+    .coverflow-card-container.pos-2 {
+        transform: translateX(420px) translateZ(-150px) rotateY(-34deg) scale(0.64);
     }
     .explore-github-card {
         flex-direction: column;
@@ -487,21 +510,22 @@
 
 @media (max-width: 899px) {
     .showcase-projects-page {
-        padding-top: 65px;
+        padding-top: 70px;
     }
     .coverflow-stage-viewport {
-        min-height: 360px;
+        min-height: 350px;
         height: 44vh;
+        max-height: 440px;
     }
     .coverflow-card-container {
-        width: min(340px, 76vw);
+        width: min(340px, 72vw);
     }
     .coverflow-card-container.pos--1 {
-        transform: translateX(-180px) translateZ(-70px) rotateY(28deg) scale(0.76);
+        transform: translateX(-180px) translateZ(-65px) rotateY(28deg) scale(0.76);
         opacity: 0.45;
     }
     .coverflow-card-container.pos-1 {
-        transform: translateX(180px) translateZ(-70px) rotateY(-28deg) scale(0.76);
+        transform: translateX(180px) translateZ(-65px) rotateY(-28deg) scale(0.76);
         opacity: 0.45;
     }
     .coverflow-card-container.pos--2,
@@ -514,10 +538,10 @@
         height: 42px;
     }
     .coverflow-nav-floater.prev-btn {
-        left: 12px;
+        left: 14px;
     }
     .coverflow-nav-floater.next-btn {
-        right: 12px;
+        right: 14px;
     }
     .explore-github-bottom-section {
         padding: 0 20px;
@@ -526,26 +550,33 @@
 
 @media (max-width: 640px) {
     .showcase-projects-page {
-        padding: 65px 0 40px 0;
+        padding: 70px 0 40px 0;
     }
     .works-marquee-wrapper {
-        margin-bottom: 10px;
-        padding: 8px 0;
+        margin-bottom: 12px;
+        padding: 12px 0 10px 0;
+    }
+    .works-marquee-track {
+        gap: 36px;
+    }
+    .marquee-works-text {
+        font-size: clamp(3rem, 13vw, 4.8rem);
     }
     .coverflow-stage-viewport {
         min-height: 290px;
-        height: 36vh;
+        height: 38vh;
+        max-height: 360px;
     }
     .coverflow-card-container {
-        width: min(290px, 82vw);
+        width: min(280px, 74vw);
     }
     .coverflow-card-container.pos--1 {
-        transform: translateX(-130px) translateZ(-60px) rotateY(30deg) scale(0.7);
-        opacity: 0.3;
+        transform: translateX(-130px) translateZ(-55px) rotateY(30deg) scale(0.72);
+        opacity: 0.35;
     }
     .coverflow-card-container.pos-1 {
-        transform: translateX(130px) translateZ(-60px) rotateY(-30deg) scale(0.7);
-        opacity: 0.3;
+        transform: translateX(130px) translateZ(-55px) rotateY(-30deg) scale(0.72);
+        opacity: 0.35;
     }
     .laptop-deck-base {
         height: 8px;
@@ -554,7 +585,70 @@
         width: 42px;
         height: 3px;
     }
+    .coverflow-nav-floater {
+        width: 38px;
+        height: 38px;
+    }
+    .coverflow-nav-floater.prev-btn {
+        left: 10px;
+    }
+    .coverflow-nav-floater.next-btn {
+        right: 10px;
+    }
     .explore-github-bottom-section {
         padding: 0 16px;
+        margin-top: 30px;
+    }
+    .explore-github-card {
+        padding: 24px 20px;
+        gap: 16px;
+    }
+    .explore-headline {
+        font-size: 1.6rem;
+    }
+    .explore-subtext {
+        font-size: 0.82rem;
+    }
+    .explore-github-action-btn {
+        height: 46px;
+        padding: 0 18px;
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 420px) {
+    .marquee-works-text {
+        font-size: clamp(2.4rem, 11vw, 3.4rem);
+    }
+    .coverflow-stage-viewport {
+        min-height: 260px;
+        height: 34vh;
+    }
+    .coverflow-card-container {
+        width: min(250px, 72vw);
+    }
+    .coverflow-card-container.pos--1 {
+        transform: translateX(-105px) translateZ(-50px) rotateY(28deg) scale(0.7);
+        opacity: 0.3;
+    }
+    .coverflow-card-container.pos-1 {
+        transform: translateX(105px) translateZ(-50px) rotateY(-28deg) scale(0.7);
+        opacity: 0.3;
+    }
+    .coverflow-nav-floater {
+        width: 34px;
+        height: 34px;
+    }
+    .coverflow-nav-floater.prev-btn {
+        left: 6px;
+    }
+    .coverflow-nav-floater.next-btn {
+        right: 6px;
+    }
+    .center-card-hover-pill {
+        padding: 5px 12px;
+        font-size: 0.62rem;
+        gap: 4px;
+        bottom: 12px;
     }
 }

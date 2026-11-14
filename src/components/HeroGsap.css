@@ -338,7 +338,7 @@
 }
 
 /* ==========================================================================
-   RESPONSIVE
+   RESPONSIVE (ALL DEVICES)
    ========================================================================== */
 @media (max-width: 1024px) {
     .hero-bg-wrap {
@@ -361,11 +361,12 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 899px) {
     .hero-gsap-section {
         height: auto;
         min-height: 100svh;
         max-height: none;
+        padding-top: 70px;
     }
 
     .hero-bg-wrap {
@@ -413,7 +414,7 @@
 
 @media (max-width: 480px) {
     .hero-giant-title {
-        font-size: clamp(3.5rem, 19vw, 5.5rem);
+        font-size: clamp(3rem, 16vw, 4.8rem);
     }
 
     .hero-name-lbl {
@@ -426,5 +427,24 @@
 
     .hero-cta-gsap {
         gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .hero-cv-btn,
+    .hero-view-btn,
+    .hero-cv-link {
+        padding: 12px 18px;
+        font-size: 0.72rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .hero-giant-title {
+        font-size: clamp(2.6rem, 15vw, 3.8rem);
+    }
+
+    .rotating-badge-container-gsap {
+        width: 56px;
+        height: 56px;
     }
 }
