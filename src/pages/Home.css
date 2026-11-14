@@ -153,7 +153,7 @@
     max-width: 460px;
     height: 540px;
     overflow: hidden;
-    background: #DDD7CE;
+    background: #DCDCDC;
 }
 
 .hero-portrait-img {
@@ -172,7 +172,7 @@
 .portrait-tone-wash {
     position: absolute;
     inset: 0;
-    background: rgba(234, 230, 225, 0.15);
+    background: rgba(240, 240, 240, 0.15);
     mix-blend-mode: multiply;
     pointer-events: none;
 }
@@ -182,7 +182,7 @@
    ========================================================================== */
 .editorial-marquee-bar {
     padding: 18px 0;
-    background: #E4DFD8;
+    background: #E8E8E8;
     border-bottom: 1px solid var(--border-subtle);
     overflow: hidden;
     white-space: nowrap;
@@ -254,18 +254,18 @@
 }
 
 .selected-project-card {
-    background: #DDD7CE;
+    background: #DCDCDC;
     padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    border: 1px solid rgba(23, 23, 23, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
 }
 
 .selected-project-card:hover {
     transform: translateY(-4px);
-    background: #D7D0C6;
+    background: #D4D4D4;
 }
 
 .card-top-num {
@@ -278,7 +278,7 @@
 .project-device-mockup {
     width: 100%;
     height: 220px;
-    background: #171717;
+    background: #111111;
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -363,7 +363,7 @@
     width: 100%;
     height: 440px;
     overflow: hidden;
-    background: #DDD7CE;
+    background: #DCDCDC;
 }
 
 .about-arch-img {
@@ -392,7 +392,7 @@
     gap: 16px;
     align-items: flex-start;
     padding-bottom: 14px;
-    border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .cap-icon-box {
@@ -425,7 +425,7 @@
    ========================================================================== */
 .editorial-quote-banner {
     padding: 80px 0;
-    background: #E4DFD8;
+    background: #E8E8E8;
     border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -463,8 +463,8 @@
    6. DARK EDITORIAL FOOTER
    ========================================================================== */
 .editorial-dark-footer {
-    background: #151515;
-    color: #F5F2ED;
+    background: #111111;
+    color: #FAFAFA;
     padding: 90px 0 70px 0;
 }
 
@@ -480,13 +480,13 @@
     font-weight: 300;
     line-height: 1.2;
     letter-spacing: -0.01em;
-    color: #F5F2ED;
+    color: #FAFAFA;
     margin-bottom: 1rem;
 }
 
 .footer-sub {
     font-size: 0.92rem;
-    color: #A39D95;
+    color: #999999;
     line-height: 1.7;
     margin-bottom: 2rem;
     max-width: 440px;
@@ -499,8 +499,8 @@
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.22em;
-    color: #F5F2ED;
-    border-bottom: 1px solid #F5F2ED;
+    color: #FAFAFA;
+    border-bottom: 1px solid #FAFAFA;
     padding-bottom: 4px;
     transition: transform 0.2s ease;
 }
@@ -514,7 +514,7 @@
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.22em;
-    color: #8A837B;
+    color: #888888;
     margin-bottom: 20px;
 }
 
@@ -528,7 +528,7 @@
 .footer-email-btn {
     background: transparent;
     border: none;
-    color: #F5F2ED;
+    color: #FAFAFA;
     font-size: 0.88rem;
     text-align: left;
     cursor: pointer;
@@ -537,21 +537,21 @@
 }
 
 .footer-email-btn:hover {
-    color: #A8957F;
+    color: #555555;
 }
 
 .footer-link {
-    color: #F5F2ED;
+    color: #FAFAFA;
     font-size: 0.88rem;
     transition: color 0.2s ease;
 }
 
 .footer-link:hover {
-    color: #A8957F;
+    color: #555555;
 }
 
 .footer-meta-loc {
-    color: #8A837B;
+    color: #888888;
     font-size: 0.84rem;
 }
 
@@ -573,13 +573,13 @@
     align-items: center;
     justify-content: center;
     font-size: 1.4rem;
-    color: #F5F2ED;
+    color: #FAFAFA;
 }
 
 .badge-year {
     font-size: 0.65rem;
     letter-spacing: 0.2em;
-    color: #8A837B;
+    color: #888888;
 }
 
 /* ==========================================================================

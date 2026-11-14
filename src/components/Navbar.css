@@ -15,9 +15,10 @@
     align-items: center;
     gap: 8px;
     padding: 10px 8px;
-    background: #E4DFD8;
-    border: 1px solid rgba(23, 23, 23, 0.15);
+    background: #E8E8E8;
+    border: 1px solid rgba(0, 0, 0, 0.15);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .editorial-nav-list {
@@ -45,7 +46,7 @@
 
 .editorial-nav-link:hover {
     color: var(--text-primary);
-    background: rgba(23, 23, 23, 0.05);
+    background: rgba(0, 0, 0, 0.05);
 }
 
 .editorial-nav-link.active {
@@ -87,8 +88,9 @@
     left: 0;
     width: 100%;
     z-index: 900;
-    background: #EAE6E1;
-    border-bottom: 1px solid rgba(23, 23, 23, 0.15);
+    background: #F0F0F0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 .mobile-header-bar {
@@ -121,7 +123,7 @@
 .editorial-drawer-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(23, 23, 23, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     backdrop-filter: blur(4px);
     z-index: 998;
 }
@@ -133,8 +135,8 @@
     width: 85%;
     max-width: 340px;
     height: 100vh;
-    background: #F4F0EB;
-    border-left: 1px solid rgba(23, 23, 23, 0.18);
+    background: #F5F5F5;
+    border-left: 1px solid rgba(0, 0, 0, 0.18);
     z-index: 999;
     padding: 32px 24px;
     display: flex;
@@ -148,7 +150,7 @@
     justify-content: space-between;
     margin-bottom: 32px;
     padding-bottom: 16px;
-    border-bottom: 1px solid rgba(23, 23, 23, 0.12);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     font-size: 0.75rem;
     font-weight: 700;
     letter-spacing: 0.2em;
@@ -191,7 +193,7 @@
 
 .drawer-footer-actions {
     padding-top: 24px;
-    border-top: 1px solid rgba(23, 23, 23, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 899px) {
@@ -202,4 +204,82 @@
     .editorial-mobile-header {
         display: block;
     }
+}
+
+/* ==========================================================================
+   BLACK NAVBAR THEME (ACTIVE IN CONTACT SECTION)
+   ========================================================================== */
+
+/* Desktop Dock */
+.editorial-dock-inner.dock-dark-theme {
+    background: #141414;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.65);
+}
+
+.dock-dark-theme .editorial-nav-link {
+    color: #8A8A8A;
+}
+
+.dock-dark-theme .editorial-nav-link:hover {
+    color: #FFFFFF;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.dock-dark-theme .editorial-nav-link.active {
+    color: #0A0A0A;
+    background: #FFFFFF;
+}
+
+.dock-dark-theme .editorial-tooltip {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45);
+}
+
+/* Mobile Header */
+.editorial-mobile-header.header-dark-theme {
+    background: #0E0E0E;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-dark-theme .mobile-brand {
+    color: #FFFFFF;
+}
+
+.header-dark-theme .mobile-menu-btn {
+    color: #FFFFFF;
+}
+
+/* Mobile Drawer */
+.editorial-mobile-drawer.drawer-dark-theme {
+    background: #121212;
+    border-left: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+}
+
+.drawer-dark-theme .drawer-top {
+    color: #888888;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.drawer-dark-theme .drawer-close {
+    color: #FFFFFF;
+}
+
+.drawer-dark-theme .drawer-editorial-link {
+    color: #CCCCCC;
+}
+
+.drawer-dark-theme .drawer-editorial-link:hover,
+.drawer-dark-theme .drawer-editorial-link.active {
+    color: #FFFFFF;
+}
+
+.drawer-dark-theme .drawer-dot {
+    color: #FFFFFF;
+}
+
+.drawer-dark-theme .drawer-footer-actions {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }

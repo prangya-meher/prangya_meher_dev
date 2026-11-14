@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import heroImg from '../assets/images/hero.png';
@@ -101,13 +100,11 @@ const HeroGsap = () => {
                     ease: 'power2.out',
                 }, '-=0.2')
                 /* CTA buttons */
-                .from('.hero-cta-gsap .btn', {
-                    opacity: 0,
-                    y: 16,
-                    stagger: 0.12,
-                    duration: 0.42,
-                    ease: 'power2.out',
-                }, '-=0.15')
+                .fromTo('.hero-cta-gsap',
+                    { opacity: 0, y: 16 },
+                    { opacity: 1, y: 0, duration: 0.45, ease: 'power2.out', clearProps: 'all' },
+                    '-=0.15'
+                )
                 /* Hero image fades in */
                 .from('.hero-bg-img', {
                     opacity: 0,
@@ -240,17 +237,15 @@ const HeroGsap = () => {
 
                     {/* CTA */}
                     <div className="hero-cta-gsap">
-                        <Link to="/projects" className="btn hero-view-btn" onClick={playClickSound}>
-                            VIEW WORK <ArrowRight size={15} className="btn-arrow" />
-                        </Link>
                         <a
                             href="/PRANGYANJALI-MEHER-%20Resume.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="hero-cv-link font-sans"
+                            className="btn hero-cv-btn"
                             onClick={playClickSound}
                         >
-                            VIEW CV <ArrowRight size={13} className="cv-arrow" />
+                            <span>VIEW CV</span>
+                            <ArrowRight size={15} className="btn-arrow" />
                         </a>
                     </div>
                 </div>

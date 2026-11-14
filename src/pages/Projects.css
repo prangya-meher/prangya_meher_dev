@@ -1,351 +1,560 @@
-.editorial-projects-page {
+/* ==========================================================================
+   PROJECTS SHOWCASE PAGE — 3D PERSPECTIVE COVERFLOW (REFERENCE MATCH)
+   Features:
+   - Infinite animated top marquee "WORKS (05) Top Picks"
+   - 3D Perspective Coverflow:
+     - Center project appears facing forward
+     - Previous & next projects appear partially on sides with perspective rotation
+     - Compact, photorealistic MacBook Pro mockup dimensions
+     - Mouse wheel scroll, touch swipe, keyboard arrows & click transitions
+     - Dark background with realistic laptop mockup and surface reflections
+     - Click center preview to open project case study
+   - Bottom Section: "EXPLORE MORE PROJECTS ON GITHUB"
+   ========================================================================== */
+
+.showcase-projects-page {
+    width: 100%;
     min-height: 100vh;
-    padding: 100px 0 80px 0;
-}
-
-.editorial-projects-toolbar {
+    min-height: 100svh;
+    padding: 0 0 60px 0;
+    position: relative;
+    overflow-x: hidden;
+    background: #080808; /* Deep dark atmosphere matching reference */
+    box-sizing: border-box;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    padding-bottom: 24px;
-    margin-bottom: 40px;
-    border-bottom: 1px solid var(--border-subtle);
-    flex-wrap: wrap;
-}
-
-.editorial-filter-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-}
-
-.editorial-filter-btn {
-    padding: 7px 18px;
-    background: transparent;
-    border: 1px solid rgba(23, 23, 23, 0.18);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: var(--text-secondary);
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.editorial-filter-btn:hover {
-    color: var(--text-primary);
-    border-color: var(--text-primary);
-}
-
-.editorial-filter-btn.active {
-    background: var(--text-primary);
-    color: #F5F2ED;
-    border-color: var(--text-primary);
-}
-
-.editorial-view-toggle {
-    display: flex;
-    gap: 4px;
-    background: #DDD7CE;
-    padding: 3px;
-    border: 1px solid rgba(23, 23, 23, 0.12);
-}
-
-.view-toggle-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.view-toggle-btn:hover {
-    color: var(--text-primary);
-}
-
-.view-toggle-btn.active {
-    background: #F4F0EB;
-    color: var(--text-primary);
+    flex-direction: column;
 }
 
 /* ==========================================================================
-   GRID VIEW
+   1. TOP MARQUEE BANNER
    ========================================================================== */
-.editorial-projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-    gap: 28px;
-    margin-bottom: 60px;
+.works-marquee-wrapper {
+    width: 100%;
+    background: #080808;
+    border-top: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 22px 0 18px 0;
+    user-select: none;
+    margin-bottom: 20px;
 }
 
-.editorial-project-card {
-    background: #DDD7CE;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border: 1px solid rgba(23, 23, 23, 0.1);
-    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
-}
-
-.editorial-project-card:hover {
-    transform: translateY(-4px);
-    background: #D7D0C6;
-}
-
-.card-meta-top {
-    display: flex;
-    justify-content: space-between;
+.works-marquee-track {
+    display: inline-flex;
     align-items: center;
+    gap: 60px;
+    animation: marqueeScroll 28s linear infinite;
+    will-change: transform;
 }
 
-.card-index-num {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--text-secondary);
+.works-marquee-wrapper:hover .works-marquee-track {
+    animation-play-state: paused;
 }
 
-.card-cat-badge {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.works-marquee-item {
+    display: inline-flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.marquee-works-text {
+    font-family: var(--font-serif);
+    font-size: clamp(4.2rem, 8vw, 7.2rem);
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #FFFFFF;
+    line-height: 0.88;
     text-transform: uppercase;
-    color: var(--text-muted);
 }
 
-.card-mockup-wrapper {
+/* ==========================================================================
+   2. 3D PERSPECTIVE COVERFLOW SHOWCASE STAGE (COMPACT SIZE)
+   ========================================================================== */
+.coverflow-stage-viewport {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: 400px;
+    height: 52vh;
+    max-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    perspective: 1200px;
+    perspective-origin: 50% 50%;
+    overflow: hidden;
+    user-select: none;
+    padding: 10px 0 20px 0;
+    box-sizing: border-box;
+}
+
+/* 3D Track */
+.coverflow-stage-track {
     position: relative;
     width: 100%;
-    height: 220px;
-    background: #171717;
-    overflow: hidden;
+    height: 100%;
     display: flex;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
 }
 
-.card-mockup-img {
+/* Compact Card Container */
+.coverflow-card-container {
+    position: absolute;
+    width: min(440px, 56vw);
+    aspect-ratio: 16 / 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity, filter;
+    outline: none;
+    user-select: none;
+}
+
+/* ==========================================================================
+   3D PERSPECTIVE POSITIONS (SCALED PROPORTIONALLY)
+   - Center card: Front and center (scale 1, translateZ 60px)
+   - Side cards: Inward perspective rotation (rotateY ±26deg), partially visible
+   ========================================================================== */
+
+/* Pos 0: Active Center Project */
+.coverflow-card-container.pos-0 {
+    transform: translateX(0) translateZ(60px) rotateY(0deg) scale(1);
+    z-index: 30;
+    opacity: 1;
+    filter: brightness(1);
+    cursor: pointer;
+}
+
+/* Pos -1: Immediate Left Card (rotated inwards) */
+.coverflow-card-container.pos--1 {
+    transform: translateX(-300px) translateZ(-80px) rotateY(26deg) scale(0.82);
+    z-index: 20;
+    opacity: 0.65;
+    filter: brightness(0.65) contrast(0.95);
+}
+
+/* Pos 1: Immediate Right Card (rotated inwards) */
+.coverflow-card-container.pos-1 {
+    transform: translateX(300px) translateZ(-80px) rotateY(-26deg) scale(0.82);
+    z-index: 20;
+    opacity: 0.65;
+    filter: brightness(0.65) contrast(0.95);
+}
+
+/* Pos -2: Far Left Card */
+.coverflow-card-container.pos--2 {
+    transform: translateX(-540px) translateZ(-180px) rotateY(36deg) scale(0.68);
+    z-index: 10;
+    opacity: 0.32;
+    filter: brightness(0.4) contrast(0.9);
+}
+
+/* Pos 2: Far Right Card */
+.coverflow-card-container.pos-2 {
+    transform: translateX(540px) translateZ(-180px) rotateY(-36deg) scale(0.68);
+    z-index: 10;
+    opacity: 0.32;
+    filter: brightness(0.4) contrast(0.9);
+}
+
+/* Hidden overflow cards beyond ±2 */
+.coverflow-card-container:not(.pos-0):not(.pos--1):not(.pos-1):not(.pos--2):not(.pos-2) {
+    transform: translateX(900px) translateZ(-300px) scale(0.5);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Hover effects */
+.coverflow-card-container.is-side-card:hover {
+    filter: brightness(0.85);
+    opacity: 0.85;
+}
+
+.coverflow-card-container.is-active-center:hover .laptop-mockup-frame {
+    transform: translateY(-4px) scale(1.01);
+}
+
+/* ==========================================================================
+   3. COMPACT REALISTIC LAPTOP MOCKUP DEVICE
+   ========================================================================== */
+.laptop-mockup-frame {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Screen Lid */
+.laptop-screen-lid {
+    width: 100%;
+    background: #0B0B0B;
+    border: 2.5px solid #282828;
+    border-bottom: none;
+    border-radius: 11px 11px 2px 2px;
+    padding: 6px 6px 9px 6px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15),
+                0 18px 40px rgba(0, 0, 0, 0.75);
+}
+
+.laptop-camera-notch {
+    width: 5px;
+    height: 5px;
+    background: #111111;
+    border: 1px solid #333333;
+    border-radius: 50%;
+    position: absolute;
+    top: 3px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+}
+
+/* Display Screen Content */
+.laptop-display-content {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    background: #000000;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+}
+
+.laptop-screen-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: top;
+    object-position: top center;
+    display: block;
     transition: transform 0.5s ease;
 }
 
-.editorial-project-card:hover .card-mockup-img {
-    transform: scale(1.04);
+.is-active-center:hover .laptop-screen-img {
+    transform: scale(1.02);
 }
 
-.card-hover-overlay {
+/* Center Card Hover Pill ("OPEN CASE STUDY ↗") */
+.center-card-hover-pill {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%) translateY(8px);
+    background: rgba(12, 12, 12, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(12px);
+    color: #FFFFFF;
+    padding: 7px 16px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.12);
+}
+
+.is-active-center:hover .center-card-hover-pill {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Side Card Vignette Dimmer */
+.side-card-dim-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(23, 23, 23, 0.6);
-    backdrop-filter: blur(2px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.25s ease;
+    background: rgba(0, 0, 0, 0.36);
+    transition: background 0.3s ease;
+    pointer-events: none;
 }
 
-.editorial-project-card:hover .card-hover-overlay {
-    opacity: 1;
+.is-side-card:hover .side-card-dim-overlay {
+    background: rgba(0, 0, 0, 0.15);
 }
 
-.card-content-block {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    flex: 1;
+/* Aluminum Laptop Base / Deck */
+.laptop-deck-base {
+    width: 108%;
+    height: 11px;
+    background: linear-gradient(180deg, #3A3A3A 0%, #202020 40%, #151515 100%);
+    border-radius: 0 0 10px 10px;
+    position: relative;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.7),
+                inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.card-work-title {
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--text-primary);
-    line-height: 1.2;
+.laptop-thumb-notch {
+    width: 56px;
+    height: 4px;
+    background: #111111;
+    border-radius: 0 0 5px 5px;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.1);
 }
 
-.card-work-title a:hover {
-    color: #000;
-}
-
-.card-work-desc {
-    font-size: 0.86rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    flex: 1;
-}
-
-.card-tags-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 4px;
-}
-
-.editorial-tag-pill {
-    padding: 3px 8px;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    background: #EAE6E1;
-    color: var(--text-secondary);
-    border: 1px solid rgba(23, 23, 23, 0.08);
-}
-
-.card-footer-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 16px;
-    border-top: 1px solid rgba(23, 23, 23, 0.1);
-    margin-top: 6px;
-}
-
-.study-link {
-    font-size: 0.74rem;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--text-primary);
-}
-
-.study-link:hover {
-    text-decoration: underline;
-}
-
-.actions-links-group {
-    display: flex;
-    gap: 8px;
-}
-
-.circle-link-btn {
-    width: 32px;
-    height: 32px;
-    background: #EAE6E1;
-    border: 1px solid rgba(23, 23, 23, 0.15);
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.circle-link-btn:hover {
-    background: var(--text-primary);
-    color: #F5F2ED;
+/* Surface Shadow underneath laptop */
+.laptop-surface-shadow {
+    width: 90%;
+    height: 18px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0) 70%);
+    filter: blur(6px);
+    margin-top: -3px;
 }
 
 /* ==========================================================================
-   LIST VIEW
+   4. INTERACTIVE FLOATING NAVIGATION ARROWS
    ========================================================================== */
-.editorial-projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 60px;
-}
-
-.editorial-list-row {
-    padding: 24px;
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.1);
-    display: flex;
-    align-items: center;
-    gap: 28px;
-    transition: transform 0.2s ease;
-}
-
-.editorial-list-row:hover {
-    transform: translateX(4px);
-    background: #D7D0C6;
-}
-
-.list-row-num {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--text-secondary);
-}
-
-.list-row-body {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    flex: 1;
-}
-
-.list-row-title {
-    font-size: 1.5rem;
-    font-weight: 400;
-    color: var(--text-primary);
-}
-
-.list-row-desc {
-    font-size: 0.86rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-    max-width: 650px;
-}
-
-.list-row-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-}
-
-.list-row-actions {
+.coverflow-nav-floater {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(18, 18, 18, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    color: #FFFFFF;
     display: flex;
     align-items: center;
-    gap: 10px;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 40;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
 }
 
-/* Bottom CTA */
-.editorial-bottom-cta {
-    padding: 36px 40px;
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
+.coverflow-nav-floater.prev-btn {
+    left: 30px;
+}
+
+.coverflow-nav-floater.next-btn {
+    right: 30px;
+}
+
+.coverflow-nav-floater:hover {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    border-color: #FFFFFF;
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.35);
+}
+
+/* ==========================================================================
+   5. BOTTOM SECTION: EXPLORE MORE PROJECTS ON GITHUB
+   ========================================================================== */
+.explore-github-bottom-section {
+    max-width: 1400px;
+    margin: 40px auto 0 auto;
+    padding: 0 40px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.explore-github-card {
+    background: #111111;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 36px 44px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
+    gap: 36px;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
 }
 
-.cta-lead {
-    font-size: 1.6rem;
-    font-weight: 400;
-    color: var(--text-primary);
+.explore-text-block {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 720px;
 }
 
-.cta-body {
+.explore-badge-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: #8C8C8C;
+}
+
+.explore-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 2.5vw, 2.4rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.explore-subtext {
     font-size: 0.88rem;
-    color: var(--text-secondary);
-    margin-top: 4px;
+    color: #9E9E9E;
+    line-height: 1.55;
+    margin: 0;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .editorial-projects-grid {
-        grid-template-columns: 1fr;
-    }
+.explore-github-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    height: 52px;
+    padding: 0 32px;
+    background: #FFFFFF;
+    color: #0A0A0A;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
 
-    .editorial-list-row {
+.explore-github-action-btn .btn-arrow-slide {
+    transition: transform 0.25s ease;
+}
+
+.explore-github-action-btn:hover {
+    background: #FACC15;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(250, 204, 21, 0.25);
+}
+
+.explore-github-action-btn:hover .btn-arrow-slide {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE MEDIA QUERIES
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .coverflow-card-container {
+        width: min(390px, 66vw);
+    }
+    .coverflow-card-container.pos--1 {
+        transform: translateX(-240px) translateZ(-70px) rotateY(26deg) scale(0.8);
+    }
+    .coverflow-card-container.pos-1 {
+        transform: translateX(240px) translateZ(-70px) rotateY(-26deg) scale(0.8);
+    }
+    .coverflow-card-container.pos--2 {
+        transform: translateX(-440px) translateZ(-160px) rotateY(34deg) scale(0.65);
+    }
+    .coverflow-card-container.pos-2 {
+        transform: translateX(440px) translateZ(-160px) rotateY(-34deg) scale(0.65);
+    }
+    .explore-github-card {
         flex-direction: column;
         align-items: flex-start;
+        padding: 32px 28px;
     }
-
-    .list-row-actions {
+    .explore-github-action-btn {
         width: 100%;
-        flex-wrap: wrap;
+        justify-content: center;
     }
+}
 
-    .editorial-bottom-cta {
-        flex-direction: column;
-        align-items: flex-start;
+@media (max-width: 899px) {
+    .showcase-projects-page {
+        padding-top: 65px;
+    }
+    .coverflow-stage-viewport {
+        min-height: 360px;
+        height: 44vh;
+    }
+    .coverflow-card-container {
+        width: min(340px, 76vw);
+    }
+    .coverflow-card-container.pos--1 {
+        transform: translateX(-180px) translateZ(-70px) rotateY(28deg) scale(0.76);
+        opacity: 0.45;
+    }
+    .coverflow-card-container.pos-1 {
+        transform: translateX(180px) translateZ(-70px) rotateY(-28deg) scale(0.76);
+        opacity: 0.45;
+    }
+    .coverflow-card-container.pos--2,
+    .coverflow-card-container.pos-2 {
+        opacity: 0;
+        pointer-events: none;
+    }
+    .coverflow-nav-floater {
+        width: 42px;
+        height: 42px;
+    }
+    .coverflow-nav-floater.prev-btn {
+        left: 12px;
+    }
+    .coverflow-nav-floater.next-btn {
+        right: 12px;
+    }
+    .explore-github-bottom-section {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .showcase-projects-page {
+        padding: 65px 0 40px 0;
+    }
+    .works-marquee-wrapper {
+        margin-bottom: 10px;
+        padding: 8px 0;
+    }
+    .coverflow-stage-viewport {
+        min-height: 290px;
+        height: 36vh;
+    }
+    .coverflow-card-container {
+        width: min(290px, 82vw);
+    }
+    .coverflow-card-container.pos--1 {
+        transform: translateX(-130px) translateZ(-60px) rotateY(30deg) scale(0.7);
+        opacity: 0.3;
+    }
+    .coverflow-card-container.pos-1 {
+        transform: translateX(130px) translateZ(-60px) rotateY(-30deg) scale(0.7);
+        opacity: 0.3;
+    }
+    .laptop-deck-base {
+        height: 8px;
+    }
+    .laptop-thumb-notch {
+        width: 42px;
+        height: 3px;
+    }
+    .explore-github-bottom-section {
+        padding: 0 16px;
     }
 }

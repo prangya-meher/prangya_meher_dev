@@ -1,102 +1,223 @@
-.editorial-contact-page {
+/* ==========================================================================
+   CONTACT SECTION / PAGE — ARCHITECTURAL REFERENCE BENTO
+   Stage 1: Minimalist "LET'S CONNECT" Full-Screen Teaser with circular button
+   Stage 2: Bento Grid Layout with Photo, Form ("Let's Talk"), and 3 Subcards
+   ========================================================================== */
+
+.contact-reference-page {
+    width: 100%;
     min-height: 100vh;
-    padding: 100px 0 80px 0;
+    min-height: 100svh;
+    background: radial-gradient(ellipse at center, #161616 0%, #080808 100%);
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
-.editorial-contact-grid {
+/* ==========================================================================
+   STAGE 1: TEASER VIEW (FIRST REFERENCE IMAGE - FULL SCREEN)
+   ========================================================================== */
+.contact-teaser-view {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 24px;
+    background: transparent;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.teaser-content-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.teaser-uptitle {
+    font-size: clamp(0.76rem, 1.3vw, 0.95rem);
+    font-weight: 500;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #8C8C8C;
+    margin-bottom: 24px;
+    user-select: none;
+}
+
+.teaser-main-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(4.5rem, 13vw, 10.5rem);
+    font-weight: 300;
+    letter-spacing: -0.01em;
+    line-height: 0.92;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+}
+
+.teaser-main-heading:hover {
+    transform: scale(1.02);
+    opacity: 0.94;
+}
+
+/* Circular Button: "WRITE A MESSAGE" */
+.teaser-circle-action {
+    width: 106px;
+    height: 106px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: transparent;
+    color: #EDEDED;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 48px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.teaser-circle-action:hover {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    border-color: #FFFFFF;
+    transform: scale(1.1);
+    box-shadow: 0 0 35px rgba(255, 255, 255, 0.25);
+}
+
+/* ==========================================================================
+   STAGE 2: BENTO FORM VIEW (SECOND REFERENCE IMAGE - FULL SCREEN)
+   ========================================================================== */
+.contact-bento-view {
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 36px;
+    background: transparent;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.bento-stage-wrapper {
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+    .bento-stage-wrapper {
+        padding-left: 70px; /* Offset for desktop vertical navigation dock */
+    }
+}
+
+.contact-bento-grid {
     display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    gap: 36px;
+    grid-template-columns: 0.88fr 1.3fr;
+    gap: 20px;
     align-items: stretch;
 }
 
-/* Info Panel */
-.editorial-contact-info-panel {
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
-    padding: 40px;
+/* ── Left Column: Tall Portrait Photo ── */
+.bento-photo-card {
+    position: relative;
+    border-radius: 22px;
+    overflow: hidden;
+    background: #181818;
+    min-height: 600px;
     display: flex;
-    flex-direction: column;
-    gap: 28px;
 }
 
-.contact-meta-block {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.bento-primary-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    filter: brightness(0.96) contrast(1.04);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.contact-meta-label {
+.bento-photo-card:hover .bento-primary-photo {
+    transform: scale(1.02);
+}
+
+/* Bottom Tab Badge "My Studio" */
+.bento-photo-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #181818;
+    padding: 9px 20px;
+    border-top-left-radius: 16px;
     font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-}
-
-.contact-meta-headline {
-    font-size: 2.2rem;
-    font-weight: 400;
-    line-height: 1.15;
-    color: var(--text-primary);
-}
-
-.contact-meta-body {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-}
-
-.editorial-channels-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    padding: 20px 0;
-    border-top: 1px solid rgba(23, 23, 23, 0.1);
-    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
-}
-
-.editorial-channel-item {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.channel-type {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text-muted);
-}
-
-.channel-value-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.channel-email-btn {
-    background: transparent;
-    border: none;
-    color: var(--text-primary);
-    font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
-    padding: 0;
-    text-align: left;
-    transition: color 0.2s ease;
+    letter-spacing: 0.08em;
+    text-transform: capitalize;
+    color: #EDEDED;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    user-select: none;
 }
 
-.channel-email-btn:hover {
-    color: #000;
-    text-decoration: underline;
+/* ── Right Column: Form + 3 Bottom Subcards ── */
+.bento-interactive-column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
-.channel-copy-icon-btn {
-    width: 26px;
-    height: 26px;
-    background: #EAE6E1;
-    border: 1px solid rgba(23, 23, 23, 0.15);
-    color: var(--text-primary);
+/* ── Top Card: Let's Talk Form ── */
+.bento-form-card {
+    background: #1A1A1A;
+    border-radius: 22px;
+    padding: 32px 34px 28px 34px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.bento-form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bento-form-headline {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 3.2vw, 2.8rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+}
+
+.bento-close-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #A0A0A0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,181 +225,328 @@
     transition: all 0.2s ease;
 }
 
-.channel-copy-icon-btn:hover {
-    background: var(--text-primary);
-    color: #F5F2ED;
+.bento-close-btn:hover {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    transform: rotate(90deg);
 }
 
-.channel-phone-link {
-    font-size: 1rem;
+.bento-form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.bento-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.bento-text-field {
+    width: 100%;
+    height: 50px;
+    background: #101010;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0 18px;
+    font-size: 0.88rem;
+    color: #FFFFFF;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+.bento-text-field::placeholder,
+.bento-textarea-field::placeholder {
+    color: #6C6C6C;
+    font-size: 0.84rem;
+}
+
+.bento-text-field:focus,
+.bento-textarea-field:focus {
+    border-color: rgba(255, 255, 255, 0.4);
+    background: #131313;
+}
+
+.bento-textarea-field {
+    width: 100%;
+    min-height: 110px;
+    background: #101010;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 0.88rem;
+    color: #FFFFFF;
+    outline: none;
+    resize: none;
+    box-sizing: border-box;
+    font-family: inherit;
+    line-height: 1.5;
+    transition: border-color 0.25s ease, background-color 0.25s ease;
+}
+
+/* White Submit Button (Matching Second Reference Image) */
+.bento-submit-action {
+    width: 100%;
+    height: 50px;
+    background: #FFFFFF;
+    color: #0A0A0A;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.84rem;
     font-weight: 600;
-    color: var(--text-primary);
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    margin-top: 4px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.channel-phone-link:hover {
-    text-decoration: underline;
+.bento-submit-action:hover:not(:disabled) {
+    background: #ECECEC;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
 }
 
-.channel-loc-text {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
+.bento-submit-action:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }
 
-.contact-social-row {
+/* ── Bottom Row: 3 Modular Cards ── */
+.bento-bottom-row {
+    display: grid;
+    grid-template-columns: 1.15fr 0.95fr 1fr;
+    gap: 16px;
+}
+
+.bento-subcard {
+    background: #1A1A1A;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Subcard 1: Studio Info */
+.bento-studio-card {
+    padding: 22px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.bento-studio-title {
+    font-family: var(--font-serif);
+    font-size: 1.55rem;
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: #FFFFFF;
+    margin: 0;
+}
+
+.bento-studio-meta {
+    font-size: 0.78rem;
+    color: #9E9E9E;
+    line-height: 1.45;
+}
+
+.bento-studio-meta p {
+    margin: 0 0 2px 0;
+}
+
+.bento-studio-meta .bento-meta-sub {
+    color: #6E6E6E;
+    font-size: 0.72rem;
+}
+
+.bento-studio-meta .bento-meta-email {
+    color: #C0C0C0;
+    word-break: break-all;
+    margin-top: 6px;
+}
+
+.bento-studio-action-btn {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    background: #101010;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    color: #E0E0E0;
+    font-size: 0.72rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.bento-studio-action-btn:hover {
+    background: #FFFFFF;
+    color: #0A0A0A;
+    border-color: #FFFFFF;
+}
+
+/* Subcard 2: Portrait Visual */
+.bento-portrait-card {
+    position: relative;
+    min-height: 180px;
+}
+
+.bento-subcard-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: brightness(0.94);
+    transition: transform 0.4s ease;
+}
+
+.bento-portrait-card:hover .bento-subcard-img {
+    transform: scale(1.04);
+}
+
+/* Subcard 3: Social Pills Stack */
+.bento-social-stack {
+    background: transparent;
+    border: none;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    justify-content: space-between;
 }
 
-.social-links-wrap {
-    display: flex;
-    gap: 18px;
-}
-
-.editorial-social-link {
-    font-size: 0.76rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text-primary);
-    border-bottom: 1px solid var(--text-primary);
-    padding-bottom: 2px;
-}
-
-.editorial-social-link:hover {
-    color: #000;
-    border-color: #000;
-}
-
-.contact-monogram-box {
-    margin-top: auto;
-    padding-top: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
-
-.monogram-capsule-stone {
-    width: 44px;
-    height: 60px;
-    border: 1px solid rgba(23, 23, 23, 0.25);
-    border-radius: 9999px;
+.bento-social-row {
+    flex: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
-    font-size: 1.25rem;
-    color: var(--text-primary);
-}
-
-.monogram-badge-year {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    color: var(--text-muted);
-}
-
-/* Form Panel */
-.editorial-contact-form-panel {
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
-    display: flex;
-    flex-direction: column;
-}
-
-.form-panel-top {
-    display: flex;
     justify-content: space-between;
-    padding: 16px 36px;
-    background: #D7D0C6;
-    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
+    padding: 10px 16px;
+    background: #1A1A1A;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    color: #D6D6D6;
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
-.editorial-form-body {
-    padding: 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.bento-social-row:hover {
+    background: #252525;
+    color: #FFFFFF;
+    border-color: rgba(255, 255, 255, 0.15);
+    transform: translateX(3px);
 }
 
-.editorial-field-item {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+.social-row-icon {
+    color: #8C8C8C;
+    transition: color 0.2s ease, transform 0.2s ease;
 }
 
-.editorial-label {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text-primary);
+.bento-social-row:hover .social-row-icon {
+    color: #FFFFFF;
+    transform: scale(1.1);
 }
 
-.editorial-text-input,
-.editorial-textarea {
-    width: 100%;
-    padding: 14px 16px;
-    background: #EAE6E1;
-    border: 1px solid rgba(23, 23, 23, 0.18);
-    font-family: inherit;
-    font-size: 0.88rem;
-    color: var(--text-primary);
-    outline: none;
-    transition: border-color 0.2s ease;
-}
-
-.editorial-text-input:focus,
-.editorial-textarea:focus {
-    border-color: var(--text-primary);
-    background: #F4F0EB;
-}
-
-.editorial-textarea {
-    resize: vertical;
-    min-height: 140px;
-    line-height: 1.6;
-}
-
-.submit-action-btn {
-    width: 100%;
-    padding: 16px;
-    margin-top: 10px;
-}
-
-/* Toast */
+/* Toast Notification */
 .editorial-toast {
     position: fixed;
     bottom: 30px;
     right: 30px;
     padding: 16px 24px;
-    background: #171717;
-    color: #F5F2ED;
+    background: #111111;
+    color: #FAFAFA;
     font-size: 0.78rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     z-index: 10000;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
 }
 
 .toast-err {
-    background: #991b1b;
+    background: #881337;
+    border-color: #f43f5e;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .editorial-contact-grid {
+.toast-ok {
+    background: #111111;
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1080px) {
+    .contact-bento-grid {
         grid-template-columns: 1fr;
+    }
+
+    .bento-photo-card {
+        min-height: 380px;
+        max-height: 440px;
+    }
+
+    .bento-bottom-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bento-social-stack {
+        grid-column: span 2;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .bento-social-row {
+        flex: 1 1 calc(50% - 8px);
     }
 }
 
 @media (max-width: 768px) {
-    .editorial-contact-page {
-        padding: 80px 0 40px 0;
+    .contact-reference-page {
+        padding: 0;
     }
 
-    .editorial-contact-info-panel,
-    .editorial-form-body {
-        padding: 24px;
+    .contact-teaser-view {
+        min-height: 100vh;
+        min-height: 100svh;
+        padding: 40px 18px;
+    }
+
+    .teaser-circle-action {
+        width: 90px;
+        height: 90px;
+        font-size: 0.62rem;
+        margin-top: 36px;
+    }
+
+    .contact-bento-view {
+        padding: 60px 16px 30px 16px;
+    }
+
+    .bento-form-card {
+        padding: 24px 20px;
+    }
+
+    .bento-input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-bottom-row {
+        grid-template-columns: 1fr;
+    }
+
+    .bento-social-stack {
+        grid-column: span 1;
+        flex-direction: column;
+    }
+
+    .bento-social-row {
+        flex: 1 1 100%;
     }
 }

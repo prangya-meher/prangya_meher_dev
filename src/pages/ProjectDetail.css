@@ -33,15 +33,15 @@
 
 /* Visual Column */
 .case-mockup-frame {
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
+    background: #DCDCDC;
+    border: 1px solid rgba(0, 0, 0, 0.12);
     overflow: hidden;
 }
 
 .case-frame-bar {
     padding: 12px 18px;
-    background: #D7D0C6;
-    border-bottom: 1px solid rgba(23, 23, 23, 0.08);
+    background: #D4D4D4;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .frame-url-label {
@@ -58,7 +58,7 @@
     min-height: 380px;
     max-height: 520px;
     overflow: hidden;
-    background: #171717;
+    background: #111111;
 }
 
 .case-full-image {
@@ -100,7 +100,7 @@
 .case-block-divider {
     width: 100%;
     height: 1px;
-    background: rgba(23, 23, 23, 0.12);
+    background: rgba(0, 0, 0, 0.12);
     margin: 4px 0;
 }
 
@@ -149,7 +149,7 @@
     gap: 14px;
     padding-top: 16px;
     margin-top: 8px;
-    border-top: 1px solid rgba(23, 23, 23, 0.12);
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 /* Pager Bar */
@@ -158,8 +158,8 @@
     align-items: center;
     justify-content: space-between;
     padding: 24px 32px;
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.1);
+    background: #DCDCDC;
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .pager-nav-link {
@@ -204,7 +204,7 @@
 .pager-center-rule {
     width: 1px;
     height: 40px;
-    background: rgba(23, 23, 23, 0.15);
+    background: rgba(0, 0, 0, 0.15);
 }
 
 /* Responsive */

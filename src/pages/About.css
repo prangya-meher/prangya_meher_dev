@@ -1,244 +1,553 @@
+/* ==========================================================================
+   ABOUT PAGE — EDITORIAL ARCHITECTURAL THEME
+   Features:
+   - Giant vertical typography "ABOUT" on the left
+   - Dark-framed portrait with floating "SAY HELLO" circular badge
+   - Profile image slides in from left, text appears from right
+   - Interactive & Auto-playing Tech Stack Slider / Carousel
+   - Floating subtle decorative elements
+   ========================================================================== */
+
 .about-editorial-page {
     min-height: 100vh;
-    padding: 100px 0 80px 0;
+    padding: 100px 0 90px 0;
+    position: relative;
+    overflow-x: hidden;
 }
 
-.about-editorial-grid {
+/* ==========================================================================
+   1. HERO STAGE SPLIT
+   ========================================================================== */
+.about-hero-stage {
+    display: flex;
+    gap: 36px;
+    align-items: stretch;
+    margin-bottom: 90px;
+    position: relative;
+}
+
+/* ── Giant Vertical Typography Rail ── */
+.about-vertical-rail {
+    flex-shrink: 0;
+    width: 120px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+    user-select: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.08);
+    padding-right: 18px;
+}
+
+.about-giant-vertical-text {
+    font-size: clamp(4.5rem, 8.5vw, 8.8rem);
+    font-weight: 300;
+    letter-spacing: -0.03em;
+    line-height: 0.85;
+    color: var(--text-primary);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.95;
+}
+
+/* ── Main Hero Split: Left (Image) + Right (Text) ── */
+.about-hero-split {
+    flex: 1;
     display: grid;
-    grid-template-columns: 1fr 1.35fr;
-    gap: 32px;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
 }
 
-.editorial-card {
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
-    padding: 32px;
-}
-
-/* Profile ID Card */
-.profile-id-card {
+/* ── Profile Image Column (Slides in from the left) ── */
+.about-image-column {
+    position: relative;
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    align-items: center;
+    justify-content: center;
 }
 
-.profile-img-container {
+.about-photo-frame {
     position: relative;
     width: 100%;
-    height: 320px;
-    background: #EAE6E1;
+    max-width: 440px;
+    height: 540px;
+    background: #111111;
     overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06);
 }
 
-.profile-photo-editorial {
+.about-profile-photo {
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: center top;
-    filter: contrast(105%);
-    transition: transform 0.5s ease;
+    filter: contrast(105%) brightness(0.98);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    display: block;
 }
 
-.profile-id-card:hover .profile-photo-editorial {
+.about-photo-frame:hover .about-profile-photo {
     transform: scale(1.03);
 }
 
-.profile-status-badge {
+/* Status Pill in photo */
+.about-status-pill {
     position: absolute;
-    bottom: 12px;
-    left: 12px;
-    background: #171717;
-    color: #F5F2ED;
-    padding: 5px 12px;
+    bottom: 16px;
+    left: 16px;
+    background: rgba(17, 17, 17, 0.92);
+    backdrop-filter: blur(8px);
+    color: #FAFAFA;
+    padding: 6px 14px;
     font-size: 0.68rem;
     font-weight: 700;
-    letter-spacing: 0.15em;
-}
-
-.profile-meta-details {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    flex: 1;
-}
-
-.profile-name-header {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.profile-full-name {
-    font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-    color: var(--text-primary);
-}
-
-.profile-geo {
-    display: flex;
+    letter-spacing: 0.16em;
+    display: inline-flex;
     align-items: center;
-    gap: 6px;
-    font-size: 0.76rem;
+    gap: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    z-index: 2;
+}
+
+.status-dot-pulse {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+    animation: statusPulse 2s infinite;
+}
+
+@keyframes statusPulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1.15); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* ── Small Floating Decorative Elements ── */
+.about-deco-ring {
+    position: absolute;
+    top: -24px;
+    left: -24px;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 1px dashed rgba(0, 0, 0, 0.15);
+    pointer-events: none;
+    z-index: 0;
+    animation: floatSlow 8s ease-in-out infinite;
+}
+
+.about-deco-cross {
+    position: absolute;
+    bottom: -18px;
+    right: 28px;
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.22);
+    pointer-events: none;
+    user-select: none;
+    animation: floatMedium 6s ease-in-out infinite alternate;
+}
+
+@keyframes floatSlow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(6deg); }
+}
+
+@keyframes floatMedium {
+    0%, 100% { transform: translateY(0px) translateX(0px); }
+    50% { transform: translateY(10px) translateX(-6px); }
+}
+
+/* ── "SAY HELLO" Circular Badge (Matching Reference) ── */
+.about-say-hello-badge {
+    position: absolute;
+    top: 50px;
+    left: -32px;
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    background: #111111;
+    color: #FAFAFA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    text-decoration: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    z-index: 4;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
+    animation: floatBadge 5s ease-in-out infinite;
+}
+
+.about-say-hello-badge:hover {
+    transform: scale(1.1) rotate(6deg);
+    background: #222222;
+}
+
+.say-hello-text {
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text-secondary);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.1;
+    color: #FAFAFA;
 }
 
-.profile-bio-text {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
+.say-hello-arrow {
+    transition: transform 0.25s ease;
 }
 
-.profile-bullet-points {
+.about-say-hello-badge:hover .say-hello-arrow {
+    transform: translate(2px, -2px);
+}
+
+@keyframes floatBadge {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-3deg); }
+}
+
+/* ── Text Content Column (Appears from the right) ── */
+.about-text-column {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.about-lead-header {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 16px 0;
-    border-top: 1px solid rgba(23, 23, 23, 0.1);
-    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
 }
 
-.bullet-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 0.82rem;
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.profile-action-btn {
-    margin-top: auto;
-    padding-top: 10px;
-}
-
-/* Skills Matrix Card */
-.skills-matrix-card {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-}
-
-.matrix-top-bar {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
-}
-
-.matrix-heading {
-    font-size: 1.8rem;
-    font-weight: 400;
-    color: var(--text-primary);
-}
-
-.matrix-sub {
-    font-size: 0.74rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
+.about-section-tag {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
     color: var(--text-muted);
 }
 
-.matrix-tabs-row {
+.about-lead-title {
+    font-size: clamp(2.2rem, 3.6vw, 3.4rem);
+    font-weight: 300;
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+}
+
+.about-role-location {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+}
+
+.about-lead-narrative {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+}
+
+.about-lead-narrative strong {
+    color: var(--text-primary);
+    font-weight: 700;
+}
+
+/* Highlight Checkpoints */
+.about-highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 18px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.highlight-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.02em;
+}
+
+.highlight-icon {
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+/* Actions Row */
+.about-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.about-projects-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 32px;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FAFAFA;
+    background: var(--text-primary);
+    border: 1.5px solid var(--text-primary);
+    border-radius: 0;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-projects-btn:hover {
+    background: transparent;
+    color: var(--text-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.about-projects-btn .btn-arrow {
+    transition: transform 0.25s ease;
+}
+
+.about-projects-btn:hover .btn-arrow {
+    transform: translateX(4px);
+}
+
+/* ==========================================================================
+   2. TECH STACK SLIDER SECTION (INTERACTIVE & AUTO-PLAYING CAROUSEL)
+   ========================================================================== */
+.about-tech-slider-section {
+    margin-bottom: 90px;
+    padding: 20px 0 10px 0;
+}
+
+.tech-slider-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+}
+
+.tech-slider-heading {
+    font-size: clamp(2rem, 3.2vw, 2.8rem);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    margin-top: 6px;
+}
+
+.tech-slider-controls-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Category Filter Tabs */
+.skills-tabs-container {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 }
 
-.matrix-tab-btn {
-    padding: 6px 14px;
+.skills-tab-pill {
+    padding: 7px 16px;
     background: transparent;
-    border: 1px solid rgba(23, 23, 23, 0.18);
+    border: 1px solid rgba(0, 0, 0, 0.18);
     font-size: 0.72rem;
     font-weight: 700;
     letter-spacing: 0.15em;
+    text-transform: uppercase;
     color: var(--text-secondary);
     cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.matrix-tab-btn:hover {
+.skills-tab-pill:hover {
     color: var(--text-primary);
     border-color: var(--text-primary);
 }
 
-.matrix-tab-btn.active {
+.skills-tab-pill.active {
     background: var(--text-primary);
-    color: #F5F2ED;
+    color: #FAFAFA;
     border-color: var(--text-primary);
 }
 
-.skills-editorial-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+/* Slider Arrow Buttons */
+.slider-arrows-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-.skill-cell-item {
-    padding: 16px;
-    background: #EAE6E1;
-    border: 1px solid rgba(23, 23, 23, 0.08);
+.slider-arrow-btn {
+    width: 38px;
+    height: 38px;
     display: flex;
-    flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid var(--text-primary);
+    color: var(--text-primary);
+    cursor: pointer;
     transition: all 0.2s ease;
 }
 
-.skill-cell-item:hover {
-    border-color: var(--text-primary);
+.slider-arrow-btn:hover:not(.disabled) {
+    background: var(--text-primary);
+    color: #FAFAFA;
     transform: translateY(-2px);
 }
 
-.skill-cell-top {
+.slider-arrow-btn.disabled {
+    opacity: 0.3;
+    cursor: default;
+    border-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Viewport and Scroll Track */
+.tech-slider-viewport {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.tech-slider-track {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Hide default scrollbar */
+    -ms-overflow-style: none;
+    padding: 10px 4px 20px 4px;
+}
+
+.tech-slider-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* Individual Tech Slide Card (Icon with Name Only) */
+.tech-slide-card {
+    flex: 0 0 175px;
+    min-width: 175px;
+    scroll-snap-align: start;
+    background: #E8E8E8;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 24px 16px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 14px;
+    height: 142px;
+    box-sizing: border-box;
+    cursor: default;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
-.skill-cell-name {
-    font-size: 1.15rem;
-    font-weight: 600;
+.tech-slide-card:hover {
+    transform: translateY(-5px);
+    background: #DCDCDC;
+    border-color: var(--text-primary);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.slide-icon-box {
+    width: 52px;
+    height: 52px;
+    background: #F0F0F0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: var(--text-primary);
+    transition: background-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
-.skill-cell-level {
-    font-size: 0.68rem;
+.tech-slide-card:hover .slide-icon-box {
+    background: var(--text-primary);
+    color: #FAFAFA;
+    transform: scale(1.06);
+}
+
+.slide-tech-name {
+    font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 2px 6px;
-    background: rgba(23, 23, 23, 0.06);
-    color: var(--text-secondary);
+    letter-spacing: 0.04em;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    line-height: 1.25;
+    text-align: center;
+    max-width: 100%;
+    word-break: break-word;
 }
 
-.skill-cell-desc {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
+/* ==========================================================================
+   3. ARCHITECTURAL PILLARS (METHODOLOGY)
+   ========================================================================= */
+.about-pillars-section {
+    margin-bottom: 40px;
 }
 
-/* Full Width Pillars Row */
-.about-pillars-fullwidth {
-    grid-column: 1 / -1;
+.pillars-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-    margin-top: 12px;
 }
 
 .pillar-editorial-card {
-    padding: 32px;
-    background: #E4DFD8;
-    border: 1px solid rgba(23, 23, 23, 0.1);
+    padding: 36px 32px;
+    background: #E8E8E8;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 14px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pillar-editorial-card:hover {
+    transform: translateY(-4px);
+    background: #DCDCDC;
 }
 
 .pillar-num {
-    font-size: 2.2rem;
+    font-size: 2.6rem;
     font-weight: 300;
     line-height: 1;
     color: var(--text-muted);
@@ -248,38 +557,104 @@
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.18em;
+    text-transform: uppercase;
     color: var(--text-primary);
 }
 
 .pillar-desc {
     font-size: 0.88rem;
     color: var(--text-secondary);
-    line-height: 1.6;
+    line-height: 1.65;
 }
 
 /* ==========================================================================
    RESPONSIVE DESIGN
    ========================================================================== */
-@media (max-width: 1024px) {
-    .about-editorial-grid {
-        grid-template-columns: 1fr;
+@media (max-width: 1200px) {
+    .about-hero-split {
+        grid-template-columns: 1fr 1.15fr;
+        gap: 36px;
     }
 
-    .about-pillars-fullwidth {
-        grid-template-columns: 1fr;
+    .about-photo-frame {
+        height: 480px;
+    }
+
+    .tech-slide-card {
+        flex: 0 0 290px;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 992px) {
+    .about-hero-stage {
+        flex-direction: column;
+        gap: 24px;
+    }
+
+    .about-vertical-rail {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        padding-right: 0;
+        padding-bottom: 16px;
+        justify-content: flex-start;
+    }
+
+    .about-giant-vertical-text {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: clamp(3.2rem, 10vw, 5rem);
+        line-height: 1;
+    }
+
+    .about-hero-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .about-image-column {
+        align-items: flex-start;
+    }
+
+    .about-say-hello-badge {
+        left: auto;
+        right: 16px;
+        top: -24px;
+    }
+
+    .pillars-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tech-slider-controls-group {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 640px) {
     .about-editorial-page {
         padding: 80px 0 40px 0;
     }
 
-    .skills-editorial-grid {
-        grid-template-columns: 1fr;
+    .about-photo-frame {
+        height: 380px;
     }
 
-    .editorial-card {
-        padding: 20px;
+    .about-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .about-projects-btn {
+        width: 100%;
+    }
+
+    .tech-slide-card {
+        flex: 0 0 145px;
+        min-width: 145px;
+        height: 125px;
+        padding: 16px 10px;
+        gap: 10px;
     }
 }

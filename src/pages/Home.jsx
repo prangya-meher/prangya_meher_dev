@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Sparkles, Layers, Zap, Compass } from 'lucide-react';
-import { projectsData } from '../data/projects';
 import { useTheme } from '../context/ThemeContext';
 import HeroGsap from '../components/HeroGsap';
 import aboutMeImg from '../assets/images/about/about-me.jpg';
@@ -56,8 +55,6 @@ const Home = () => {
         setTimeout(() => setCopiedEmail(false), 2500);
     };
 
-    const selectedProjects = projectsData.slice(0, 3);
-
     return (
         <div className="editorial-home">
             {/* ================================================================
@@ -80,51 +77,7 @@ const Home = () => {
             </div>
 
             {/* ================================================================
-                3. SELECTED WORK (PROJECTS PREVIEW)
-               ================================================================ */}
-            <section className="editorial-selected-section">
-                <div className="container">
-                    <div className="selected-header-row">
-                        <span className="editorial-section-tag font-sans">SELECTED WORK</span>
-                        <Link to="/projects" className="all-projects-link font-sans" onClick={playClickSound}>
-                            ALL PROJECTS &rarr;
-                        </Link>
-                    </div>
-
-                    <div className="selected-projects-grid">
-                        {selectedProjects.map((project, idx) => (
-                            <Link
-                                to={`/projects/${project.id}`}
-                                key={project.id}
-                                className="selected-project-card"
-                                onClick={playClickSound}
-                            >
-                                <div className="card-top-num font-sans">0{idx + 1}</div>
-
-                                <div className="project-device-mockup">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        className="device-screen-img"
-                                    />
-                                </div>
-
-                                <div className="project-card-info">
-                                    <h3 className="project-card-title font-serif">
-                                        {project.title.split('—')[0]}
-                                    </h3>
-                                    <p className="project-card-sub font-sans">
-                                        {project.tags.slice(0, 3).join(' · ')}
-                                    </p>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ================================================================
-                4. ABOUT ME + WHAT I DO
+                3. ABOUT ME + WHAT I DO
                ================================================================ */}
             <section className="editorial-about-section">
                 <div className="container about-tri-grid">
@@ -252,9 +205,9 @@ const Home = () => {
 
                         {/* Monogram Badge */}
                         <div className="footer-monogram-badge">
-                            <div className="monogram-capsule font-serif">
+                            {/* <div className="monogram-capsule font-serif">
                                 <span>PM</span>
-                            </div>
+                            </div> */}
                             <span className="badge-year font-sans">ESTD 2026</span>
                         </div>
                     </div>

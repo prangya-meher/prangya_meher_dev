@@ -8,8 +8,8 @@ import './Navbar.css';
 const navLinks = [
     { name: 'Home', path: '/', icon: <Home size={18} /> },
     { name: 'About', path: '/about', icon: <User size={18} /> },
-    { name: 'Services', path: '/services', icon: <Sparkles size={18} /> },
     { name: 'Projects', path: '/projects', icon: <Briefcase size={18} /> },
+    { name: 'Services', path: '/services', icon: <Sparkles size={18} /> },
     { name: 'Contact', path: '/contact', icon: <Mail size={18} /> },
 ];
 
@@ -17,6 +17,8 @@ const Navbar = () => {
     const location = useLocation();
     const [mobileOpen, setMobileOpen] = useState(false);
     const { playClickSound } = useTheme();
+
+    const isDarkPage = location.pathname.startsWith('/contact') || location.pathname.startsWith('/projects');
 
     const isActive = (path) =>
         path === '/' ? location.pathname === '/' : location.pathname.startsWith(path);
@@ -29,7 +31,7 @@ const Navbar = () => {
         <>
             {/* Desktop Minimal Vertical Dock */}
             <aside className="editorial-dock" aria-label="Main Navigation">
-                <nav className="editorial-dock-inner">
+                <nav className={`editorial-dock-inner ${isDarkPage ? 'dock-dark-theme' : ''}`}>
                     <ul className="editorial-nav-list">
                         {navLinks.map((link) => {
                             const active = isActive(link.path);
@@ -52,7 +54,7 @@ const Navbar = () => {
             </aside>
 
             {/* Mobile Header */}
-            <header className="editorial-mobile-header">
+            <header className={`editorial-mobile-header ${isDarkPage ? 'header-dark-theme' : ''}`}>
                 <div className="mobile-header-bar">
                     <NavLink to="/" className="mobile-brand font-serif" onClick={handleNavClick}>
                         <span>PRANGYANJALI MEHER</span>
@@ -83,7 +85,7 @@ const Navbar = () => {
                             onClick={() => setMobileOpen(false)}
                         />
                         <motion.nav
-                            className="editorial-mobile-drawer"
+                            className={`editorial-mobile-drawer ${isDarkPage ? 'drawer-dark-theme' : ''}`}
                             initial={{ x: '100%' }}
                             animate={{ x: 0 }}
                             exit={{ x: '100%' }}

@@ -1,184 +1,373 @@
-.editorial-services-page {
+/* ==========================================================================
+   SERVICES PAGE (HOVER ACCORDION ARCHITECTURE)
+   ========================================================================== */
+
+.services-page-accordion {
     min-height: 100vh;
-    padding: 100px 0 80px 0;
+    width: 100%;
+    padding: 70px 0 110px 0;
+    background-color: var(--bg-main, #F0F0F0);
+    box-sizing: border-box;
 }
 
-.editorial-services-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    margin-bottom: 72px;
+.services-page-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding-left: 110px; /* Offset for desktop navigation dock */
+    padding-right: 48px;
+    box-sizing: border-box;
 }
 
-.editorial-service-card {
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
-    padding: 36px;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    transition: transform 0.3s ease;
-}
-
-.editorial-service-card:hover {
-    transform: translateY(-4px);
-    background: #D7D0C6;
-}
-
-.service-index-number {
-    font-size: 2.2rem;
-    font-weight: 300;
-    line-height: 1;
-    color: var(--text-muted);
-}
-
-.service-card-heading {
-    font-size: 1.15rem;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    color: var(--text-primary);
-}
-
-.service-card-narrative {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-    line-height: 1.65;
-}
-
-.service-deliverables-box {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding: 18px 0;
-    border-top: 1px solid rgba(23, 23, 23, 0.1);
-    border-bottom: 1px solid rgba(23, 23, 23, 0.1);
-    margin: 4px 0;
-}
-
-.deliverables-tag {
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--text-muted);
-}
-
-.deliverables-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.deliverable-line {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    line-height: 1.5;
-}
-
-.dash-mark {
-    color: var(--text-primary);
-    font-weight: 700;
-}
-
-.service-tags-box {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: auto;
-    padding-top: 6px;
+@media (max-width: 900px) {
+    .services-page-container {
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-top: 20px;
+    }
 }
 
 /* ==========================================================================
-   METHODOLOGY ROADMAP
+   HEADER SECTION
+   ========================================================================== */
+.services-eyebrow-wrapper {
+    margin-bottom: 50px;
+}
+
+.services-eyebrow {
+    display: inline-block;
+    color: #FF5533;
+    font-size: 0.88rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    margin-bottom: 12px;
+}
+
+.services-hero-heading {
+    font-family: var(--font-serif);
+    font-size: clamp(2.8rem, 5.2vw, 4.4rem);
+    font-weight: 300;
+    -webkit-text-stroke: 0.5px currentColor;
+    line-height: 1.08;
+    letter-spacing:0.17em;
+    color: var(--text-primary, #111111);
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ==========================================================================
+   ACCORDION LIST (INTERACTIVE ON HOVER)
+   ========================================================================== */
+.services-accordion-list {
+    border-top: 1px solid rgba(0, 0, 0, 0.14);
+    margin-bottom: 90px;
+    width: 100%;
+}
+
+.service-accordion-row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.14);
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.service-accordion-row:hover {
+    background-color: rgba(0, 0, 0, 0.015);
+}
+
+/* Row Header */
+.service-row-header {
+    display: flex;
+    align-items: center;
+    padding: 22px 0;
+    user-select: none;
+    width: 100%;
+}
+
+.service-title-cluster {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+/* Superscript Number */
+.service-sup-num {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    font-weight: 400;
+    transform: translateY(-0.55em);
+    color: #71717A;
+    transition: color 0.25s ease;
+}
+
+.active-row .service-sup-num,
+.service-accordion-row:hover .service-sup-num {
+    color: #FF5533;
+}
+
+/* Big Title */
+.service-accordion-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.2vw, 2.1rem);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    color: #111111;
+    text-transform: uppercase;
+    margin: 0;
+    transition: color 0.25s cubic-bezier(0.16, 1, 0.3, 1), transform 0.25s ease;
+}
+
+.active-row .service-accordion-title,
+.service-accordion-row:hover .service-accordion-title {
+    color: #FF5533;
+}
+
+/* Subtitle next to title */
+.service-sub-label {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #71717A;
+    margin-left: 6px;
+    transition: color 0.25s ease;
+}
+
+.active-row .service-sub-label,
+.service-accordion-row:hover .service-sub-label {
+    color: #3F3F46;
+}
+
+/* ==========================================================================
+   EXPANDED ACCORDION PANEL (REVEALED ON HOVER)
+   ========================================================================== */
+.service-expanded-panel {
+    overflow: hidden;
+    padding-bottom: 44px;
+    padding-top: 4px;
+    width: 100%;
+}
+
+.service-content-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+    width: 100%;
+    padding-left: 28px;
+}
+
+@media (max-width: 900px) {
+    .service-content-grid {
+        padding-left: 0;
+    }
+}
+
+/* Left Column: Description */
+.service-desc-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-desc-text {
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: #4B5563;
+    margin: 0;
+}
+
+.service-contact-link-wrap {
+    margin-top: 20px;
+}
+
+.service-inquire-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #FF5533;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1.5px solid #FF5533;
+    padding-bottom: 3px;
+    transition: gap 0.2s ease;
+    width: fit-content;
+}
+
+.service-inquire-link:hover {
+    gap: 14px;
+}
+
+/* Middle & Right Columns: Bullets */
+.service-col-deliverables {
+    display: flex;
+    flex-direction: column;
+}
+
+.service-bullets {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.service-bullet-line {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: #27272A;
+    line-height: 1.4;
+}
+
+.bullet-symbol {
+    color: #111111;
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+/* ==========================================================================
+   METHODOLOGY SECTION
    ========================================================================== */
 .methodology-container {
-    margin-bottom: 72px;
+    margin-top: 40px;
+    margin-bottom: 96px;
+    width: 100%;
 }
 
 .methodology-header {
-    margin-bottom: 32px;
+    margin-bottom: 36px;
 }
 
 .methodology-title {
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--text-primary);
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+    font-weight: 400;
+    color: var(--text-primary, #111111);
     letter-spacing: -0.01em;
+    margin-top: 8px;
 }
 
 .methodology-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 24px;
+    width: 100%;
 }
 
 .methodology-card {
-    padding: 24px;
-    background: #E4DFD8;
-    border: 1px solid rgba(23, 23, 23, 0.1);
+    padding: 32px 28px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 14px;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.methodology-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.05);
 }
 
 .step-num {
-    font-size: 2rem;
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
     font-weight: 300;
     line-height: 1;
-    color: var(--text-muted);
+    color: #888888;
 }
 
 .step-name {
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 0.16em;
-    color: var(--text-primary);
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #111111;
 }
 
 .step-detail {
-    font-size: 0.84rem;
-    color: var(--text-secondary);
-    line-height: 1.55;
+    font-size: 0.88rem;
+    color: #555555;
+    line-height: 1.6;
 }
 
-/* Bottom CTA */
+/* ==========================================================================
+   BOTTOM CALL TO ACTION
+   ========================================================================== */
 .services-bottom-cta {
-    padding: 44px;
-    background: #DDD7CE;
-    border: 1px solid rgba(23, 23, 23, 0.12);
+    padding: 56px 64px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 36px;
     flex-wrap: wrap;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .cta-left {
-    max-width: 600px;
+    max-width: 750px;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .cta-lead {
-    font-size: 2rem;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 2.8vw, 2.6rem);
     font-weight: 400;
-    color: var(--text-primary);
+    color: #111111;
     letter-spacing: -0.01em;
 }
 
 .cta-desc {
-    font-size: 0.92rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+    font-size: 1rem;
+    color: #555555;
+    line-height: 1.65;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .editorial-services-grid {
+.service-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 36px;
+    background: #111111;
+    color: #FFFFFF;
+    border: 1px solid #111111;
+    border-radius: 4px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.service-cta-button:hover {
+    background: #FF5533;
+    border-color: #FF5533;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(255, 85, 51, 0.28);
+}
+
+/* ==========================================================================
+   RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@media (max-width: 1080px) {
+    .service-content-grid {
         grid-template-columns: 1fr;
+        gap: 32px;
     }
 
     .methodology-grid {
@@ -186,13 +375,35 @@
     }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 680px) {
+    .service-row-header {
+        padding: 16px 0;
+    }
+
+    .service-title-cluster {
+        gap: 10px;
+    }
+
+    .service-accordion-title {
+        font-size: 1.25rem;
+    }
+
+    .service-sub-label {
+        font-size: 0.8rem;
+    }
+
     .methodology-grid {
         grid-template-columns: 1fr;
     }
 
     .services-bottom-cta {
+        padding: 32px 24px;
         flex-direction: column;
         align-items: flex-start;
+    }
+
+    .service-cta-button {
+        width: 100%;
+        justify-content: center;
     }
 }

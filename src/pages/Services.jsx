@@ -1,58 +1,78 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Code2, Sparkles, Layers, Zap, ArrowRight, CheckCircle2 } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import './Services.css';
 
 const services = [
     {
+        id: '01',
         num: '01',
-        title: 'FRONTEND ARCHITECTURE & SPAS',
-        desc: 'Building responsive, fast-loading, and scalable single-page web applications with modern React ecosystems and component design systems.',
-        deliverables: [
-            'Modular, DRY component architecture & reusable design tokens',
-            'Robust state management and decoupled business logic',
-            'Flawless responsive layouts across all device resolutions',
-            'Cross-browser accessibility & semantic markup'
+        title: 'FRONTEND ARCHITECTURE',
+        subLabel: 'React & SPAs',
+        desc: 'I craft high-performance, accessible single-page applications with modular component architecture, robust state management, and fluid user interactions designed for scale.',
+        deliverablesCol1: [
+            'Modular Component Architecture',
+            'Design Tokens & System UI',
+            'Decoupled Business Logic'
         ],
-        stack: ['React 19', 'JavaScript (ES6+)', 'Tailwind CSS', 'Vite']
+        deliverablesCol2: [
+            'State Architecture & Store Design',
+            'Cross-Browser Semantic Markup',
+            'Responsive Multi-Device Layouts'
+        ]
     },
     {
+        id: '02',
         num: '02',
-        title: 'CREATIVE GSAP MOTION & MICRO-UX',
-        desc: 'Transforming static websites into engaging digital experiences with orchestrated timeline animations, scroll-triggered reveals, and fluid interactions.',
-        deliverables: [
-            'Scroll-triggered narrative animations with GSAP ScrollTrigger',
-            'Smooth inertial scrolling with Locomotive Scroll',
-            'Hardware-accelerated 60fps CSS animations & micro-interactions',
-            'Framer Motion layout transitions & spring physics'
+        title: 'CREATIVE MOTION',
+        subLabel: 'GSAP & Micro-UX',
+        desc: 'Transforming static web platforms into narrative-driven visual journeys with orchestrated timeline animations, inertial scrolling, and fluid interaction physics.',
+        deliverablesCol1: [
+            'GSAP ScrollTrigger Choreography',
+            'Locomotive Inertial Scrolling',
+            'Hardware-Accelerated 60fps CSS'
         ],
-        stack: ['GSAP', 'Framer Motion', 'LocomotiveJS', 'CSS3']
+        deliverablesCol2: [
+            'Framer Motion Page Transitions',
+            'Interactive Custom Cursor States',
+            'Dynamic Hover & Reveal Micro-UX'
+        ]
     },
     {
+        id: '03',
         num: '03',
-        title: 'FULL-STACK INTEGRATION & RESTFUL APIS',
+        title: 'FULL-STACK INTEGRATION',
+        subLabel: 'Coding & APIs',
         desc: 'Connecting intuitive frontend interfaces with reliable server environments, relational databases, and secure asynchronous data pipelines.',
-        deliverables: [
-            'RESTful API architecture with Node.js & Express',
-            'Relational database schema modeling with SQLite',
-            'Asynchronous data fetching with custom hooks & Axios',
-            'Environment security, CORS configuration, and cloud deploy'
+        deliverablesCol1: [
+            'RESTful API Architecture',
+            'Node.js & Express Endpoints',
+            'SQLite & Relational Schemas'
         ],
-        stack: ['Node.js', 'Express.js', 'SQLite', 'MongoDB', 'REST']
+        deliverablesCol2: [
+            'Asynchronous Custom Hook Pipelines',
+            'CORS & Security Configuration',
+            'Cloud Infrastructure Deployment'
+        ]
     },
     {
+        id: '04',
         num: '04',
-        title: 'PERFORMANCE OPTIMIZATION & WEB VITALS',
-        desc: 'Auditing and tuning web platforms to achieve top-tier Lighthouse scores, instant first contentful paint, and zero layout shift.',
-        deliverables: [
-            'Bundle size optimization, code-splitting & tree-shaking',
-            'Asset compression and modern WebP / SVG formats',
-            'Zero Cumulative Layout Shift (CLS) & sub-second LCP',
-            'Production deployment workflows (Railway, Vercel)'
+        title: 'OPTIMIZATION',
+        subLabel: 'Core Web Vitals',
+        desc: 'Auditing and tuning web platforms to achieve top-tier Lighthouse benchmarks, sub-second First Contentful Paint, and zero cumulative layout shift.',
+        deliverablesCol1: [
+            'Bundle Size & Code-Splitting',
+            'Asset Compression & Modern Formats',
+            'Tree-Shaking & Dynamic Imports'
         ],
-        stack: ['Lighthouse', 'Vite', 'Core Web Vitals', 'Git/GitHub']
+        deliverablesCol2: [
+            'Zero Cumulative Layout Shift (CLS)',
+            'Sub-Second LCP Benchmarking',
+            'Automated CI/CD Workflows'
+        ]
     }
 ];
 
@@ -81,54 +101,123 @@ const processSteps = [
 
 const Services = () => {
     const { playClickSound } = useTheme();
+    // Default 01 open, smoothly switches on hover
+    const [openServiceId, setOpenServiceId] = useState('01');
+
+    const handleHover = (id) => {
+        if (openServiceId !== id) {
+            setOpenServiceId(id);
+        }
+    };
 
     return (
-        <section className="editorial-services-page">
-            <div className="container">
+        <section className="services-page-accordion">
+            <div className="services-page-container">
                 {/* Header */}
-                <div className="section-header">
-                    <span className="section-tag font-sans">WHAT I DO</span>
-                    <h1 className="section-title font-serif">
-                        ENGINEERING SERVICES DESIGNED FOR INTUITIVE USER EXPERIENCES.
+                <div className="services-eyebrow-wrapper">
+                    <h1 className="services-hero-heading font-serif">
+                        WHAT I CAN DO
                     </h1>
-                    <p className="section-subtitle font-sans">
-                        From bespoke React user interfaces to creative GSAP motion engineering and full-stack API integration, here is how I help digital ideas succeed.
-                    </p>
                 </div>
 
-                {/* Services Grid */}
-                <div className="editorial-services-grid">
-                    {services.map((service, idx) => (
-                        <div key={idx} className="editorial-service-card">
-                            <span className="service-index-number font-serif">{service.num}</span>
-                            <h3 className="service-card-heading font-sans">{service.title}</h3>
-                            <p className="service-card-narrative font-sans">{service.desc}</p>
+                {/* Accordion List (Opens on Hover) */}
+                <div className="services-accordion-list">
+                    {services.map((service) => {
+                        const isOpen = openServiceId === service.id;
 
-                            <div className="service-deliverables-box">
-                                <span className="deliverables-tag font-sans">DELIVERABLES:</span>
-                                <ul className="deliverables-stack font-sans">
-                                    {service.deliverables.map((item, i) => (
-                                        <li key={i} className="deliverable-line">
-                                            <span className="dash-mark">—</span>
-                                            <span>{item}</span>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
+                        return (
+                            <div
+                                key={service.id}
+                                className={`service-accordion-row ${isOpen ? 'active-row' : ''}`}
+                                onMouseEnter={() => handleHover(service.id)}
+                                onClick={() => setOpenServiceId(service.id)}
+                            >
+                                {/* Row Header (Clean typography without icons or boxes) */}
+                                <div
+                                    className="service-row-header"
+                                    role="button"
+                                    tabIndex={0}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter' || e.key === ' ') {
+                                            e.preventDefault();
+                                            setOpenServiceId(service.id);
+                                        }
+                                    }}
+                                >
+                                    <div className="service-title-cluster">
+                                        <sup className="service-sup-num font-serif">{service.num}</sup>
+                                        <h2 className="service-accordion-title font-serif">
+                                            {service.title}
+                                        </h2>
+                                        <span className="service-sub-label font-sans">
+                                            {service.subLabel}
+                                        </span>
+                                    </div>
+                                </div>
 
-                            <div className="service-tags-box font-sans">
-                                {service.stack.map((s, i) => (
-                                    <span key={i} className="editorial-tag-pill">{s}</span>
-                                ))}
+                                {/* Expanded Content Panel (Reveals on Hover) */}
+                                <AnimatePresence initial={false}>
+                                    {isOpen && (
+                                        <motion.div
+                                            className="service-expanded-panel"
+                                            initial={{ opacity: 0, height: 0 }}
+                                            animate={{ opacity: 1, height: 'auto' }}
+                                            exit={{ opacity: 0, height: 0 }}
+                                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                                        >
+                                            <div className="service-content-grid">
+                                                {/* Left Column: Narrative description */}
+                                                <div className="service-desc-box">
+                                                    <p className="service-desc-text font-sans">
+                                                        {service.desc}
+                                                    </p>
+                                                    <div className="service-contact-link-wrap">
+                                                        <Link
+                                                            to="/contact"
+                                                            className="service-inquire-link font-mono"
+                                                            onClick={playClickSound}
+                                                        >
+                                                            DISCUSS PROJECT <ArrowRight size={14} />
+                                                        </Link>
+                                                    </div>
+                                                </div>
+
+                                                {/* Middle Column: Deliverables 1 */}
+                                                <div className="service-col-deliverables font-sans">
+                                                    <ul className="service-bullets">
+                                                        {service.deliverablesCol1.map((item, idx) => (
+                                                            <li key={idx} className="service-bullet-line">
+                                                                <span className="bullet-symbol">•</span>
+                                                                <span>{item}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+
+                                                {/* Right Column: Deliverables 2 */}
+                                                <div className="service-col-deliverables font-sans">
+                                                    <ul className="service-bullets">
+                                                        {service.deliverablesCol2.map((item, idx) => (
+                                                            <li key={idx} className="service-bullet-line">
+                                                                <span className="bullet-symbol">•</span>
+                                                                <span>{item}</span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
 
-                {/* Methodology Roadmap */}
+                {/* Methodology Roadmap Section */}
                 <div className="methodology-container">
                     <div className="methodology-header">
-                        <span className="section-tag font-sans">METHODOLOGY</span>
+                        <span className="services-eyebrow font-mono">&#123; Methodology &#125;</span>
                         <h2 className="methodology-title font-serif">HOW I APPROACH SOFTWARE DEVELOPMENT</h2>
                     </div>
 
@@ -147,10 +236,12 @@ const Services = () => {
                 <div className="services-bottom-cta">
                     <div className="cta-left">
                         <h3 className="cta-lead font-serif">HAVE A PROJECT OR ROLE IN MIND?</h3>
-                        <p className="cta-desc font-sans">Let's discuss how my engineering and creative motion capabilities can bring your vision to life.</p>
+                        <p className="cta-desc font-sans">
+                            Let's discuss how my engineering and creative motion capabilities can bring your digital vision to life.
+                        </p>
                     </div>
-                    <Link to="/contact" className="btn btn-primary" onClick={playClickSound}>
-                        LET'S CONNECT <ArrowRight size={15} />
+                    <Link to="/contact" className="service-cta-button font-mono" onClick={playClickSound}>
+                        LET'S CONNECT <ArrowRight size={16} />
                     </Link>
                 </div>
             </div>
