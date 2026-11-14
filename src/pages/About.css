@@ -75,7 +75,7 @@
     position: relative;
     width: 100%;
     max-width: 440px;
-    height: 540px;
+    height: clamp(360px, 55vw, 560px);
     background: #111111;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.15);
@@ -577,7 +577,7 @@
     }
 
     .about-photo-frame {
-        height: 480px;
+        height: clamp(320px, 45vw, 480px);
     }
 
     .tech-slide-card {
@@ -638,7 +638,7 @@
     }
 
     .about-photo-frame {
-        height: 360px;
+        height: clamp(300px, 70vw, 460px);
     }
 
     .about-actions-row {
@@ -666,7 +666,7 @@
     }
 
     .about-photo-frame {
-        height: 300px;
+        height: clamp(280px, 75vw, 380px);
     }
 
     .about-name-title {
